@@ -1,0 +1,613 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2017-05-21T23:08:19.175422766"/>
+	<style type="text/css">
+		@page { margin-left: 1.18in; margin-right: 0.39in; margin-top: 0.79in; margin-bottom: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		a:link { so-language: zxx }
+	</style>
+</head>
+<body lang="ru-RU" dir="ltr">
+<ol>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><b><span style="background: transparent">Занятие
+	№5</span></b></font></font></font></p>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; font-variant: normal; letter-spacing: -0.8pt; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><span style="background: transparent">Алгоритмы
+	сортировок статических типов данных</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Цель</b>:
+ознакомиться с работой алгоритмами
+сортировок и их видами.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Ход
+работы</b>: изучить описание к работе,
+выполнить практическую часть, оформить
+отчет и защитить работу.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Алгоритм
+сортировки</b> — это алгоритм для
+упорядочивания элементов в списке. В
+случае, когда элемент списка имеет
+несколько полей, поле, служащее критерием
+порядка, называется ключом сортировки.
+На практике в качестве ключа часто
+выступает число, а в остальных полях
+хранятся какие-либо данные, никак не
+влияющие на работу алгоритма.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Свойства
+и классификация:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Устойчивость
+(англ. stability) — устойчивая сортировка
+не меняет взаимного расположения
+элементов с одинаковыми ключами.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Естественность
+поведения</b> — эффективность метода
+при обработке уже упорядоченных или
+частично упорядоченных данных. Алгоритм
+ведёт себя естественно, если учитывает
+эту характеристику входной последовательности
+и работает лучше.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Ещё
+одним важным свойством алгоритма
+является его сфера применения. Здесь
+основных типов упорядочения два:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><i>Внутренняя
+сортировка</i> оперирует массивами,
+целиком помещающимися в оперативной
+памяти с произвольным доступом к любой
+ячейке. Данные обычно упорядочиваются
+на том же месте без дополнительных
+затрат.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+современных архитектурах персональных
+компьютеров широко применяется подкачка
+и кэширование памяти. Алгоритм сортировки
+должен хорошо сочетаться с применяемыми
+алгоритмами кэширования и подкачки.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><i>Внешняя
+сортировка</i> оперирует запоминающими
+устройствами большого объёма, но не с
+произвольным доступом, а последовательным
+(упорядочение файлов), то есть в данный
+момент «виден» только один элемент, а
+затраты на перемотку по сравнению с
+памятью неоправданно велики. Это
+накладывает некоторые дополнительные
+ограничения на алгоритм и приводит к
+специальным методам упорядочения,
+обычно использующим дополнительное
+дисковое пространство. Кроме того,
+доступ к данным во внешней памяти
+производится намного медленнее, чем
+операции с оперативной памятью.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Доступ
+к носителю осуществляется последовательным
+образом: в каждый момент времени можно
+считать или записать только элемент,
+следующий за текущим.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Объём
+данных не позволяет им разместиться в
+ОЗУ.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Также
+алгоритмы классифицируются по:</span></font></font></font></p>
+<ul>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">потребности
+	в дополнительной памяти или её отсутствию</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">потребности
+	в знаниях о структуре данных, выходящих
+	за рамки операции сравнения, или
+	отсутствию таковой.</span></font></font></font></p>
+</ul>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Основные
+алгоритмы сортировок:</span></font></font></font></p>
+<ul>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Сортировка
+	пузырьком.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Сортировка
+	перемешиванием.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Сортировка
+	вставками.</span></font></font></font></p>
+</ul>
+<p><font size="4" style="font-size: 14pt"><b>Сортировка
+пузырьком</b></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Сортировка
+простыми обменами, сортировка пузырьком
+— простой алгоритм сортировки. Для
+понимания и реализации этот алгоритм
+— простейший, но эффективен он лишь для
+небольших массивов.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Алгоритм
+состоит из повторяющихся проходов по
+сортируемому массиву. За каждый проход
+элементы последовательно сравниваются
+попарно и, если порядок в паре неверный,
+выполняется обмен элементов. Проходы
+по массиву повторяются раз или до тех
+пор, пока на очередном проходе не
+окажется, что обмены больше не нужны,
+что означает — массив отсортирован.
+При каждом проходе алгоритма по
+внутреннему циклу, очередной наибольший
+элемент массива ставится на своё место
+в конце массива рядом с предыдущим
+«наибольшим элементом», а наименьший
+элемент перемещается на одну позицию
+к началу массива («всплывает» до нужной
+позиции, как пузырёк в воде, отсюда и
+название алгоритма).</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+bubble_sort(int *a, int length)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">for
+(int i = 0; i &lt; length-1; i++) {</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">bool
+swapped = false;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">for
+(int j = 0; j &lt; length-i-1; j++) {</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if
+(a[j] &gt; a[j+1]) {</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+b = a[j]; </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">a[j]
+= a[j+1];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">a[j+1]
+= b;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">swapped
+= true;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!swapped)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">break;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p><font size="4" style="font-size: 14pt"><b>Сортировка
+перемешиванием</b></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Сортировка
+перемешиванием, или Шейкерная сортировка,
+или двунаправленная (англ. Cocktail sort) —
+разновидность пузырьковой сортировки.
+Анализируя метод пузырьковой сортировки,
+можно отметить два обстоятельства.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Во-первых,
+если при движении по части массива
+перестановки не происходят, то эта часть
+массива уже отсортирована и, следовательно,
+её можно исключить из рассмотрения.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Во-вторых,
+при движении от конца массива к началу
+минимальный элемент “всплывает” на
+первую позицию, а максимальный элемент
+сдвигается только на одну позицию
+вправо.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Эти
+две идеи приводят к следующим модификациям
+в методе пузырьковой сортировки. Границы
+рабочей части массива (т.е. части массива,
+где происходит движение) устанавливаются
+в месте последнего обмена на каждой
+итерации. Массив просматривается
+поочередно справа налево и слева направо.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+shaker_sort(int array[], int size)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+left_idx=0,right_idx=size-1;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">bool
+flag=true;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">while(left_idx&lt;right_idx&amp;&amp;)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">flag=false;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">for
+(int idx = left_idx; idx &lt; right_idx; idx++)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if
+(array[idx + 1] &lt; array[idx])</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+temp= array[idx + 1];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">array[idx
++ 1]=array[idx];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">array[idx]=temp;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">flag=true;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">right_idx--;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!flag)break;flag=false;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">for
+(int idx = right_idx; idx &gt; left_idx; idx--)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if
+(array[idx - 1] &gt; array[idx])</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+temp= array[idx + 1];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">array[idx
++ 1]=array[idx];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">array[idx]=temp;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">flag=true;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">left_idx++;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p style="margin-bottom: 0in; line-height: 100%"><font size="4" style="font-size: 14pt"><b>Сортировка
+вставками</b></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Сортировка
+вставками (англ. Insertion sort) — алгоритм
+сортировки, в котором элементы входной
+последовательности просматриваются
+по одному, и каждый новый поступивший
+элемент размещается в подходящее место
+среди ранее упорядоченных элементов.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><span style="background: transparent"><img src="data:image/png;base64,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" name="Врезка1" alt="Врезка1" align="middle" width="400" height="254" border="0"/>
+
+</span></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+sort(int * array,const int&amp; size){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">for(int
+i=1; i&lt;size;i++){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+temp = array[i];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+j=i--;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">while(j&gt;=0&amp;&amp;array[j]&gt;key){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">array[j+1]=array[j];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">j--;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">array[j+1]=temp;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Контрольные
+вопросы</b>:</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «Алгоритм сортировки».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «Естественность поведения».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Назовите
+	классификацию алгоритмов сортировки.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Охарактеризуйте
+	сортировку пузырьком?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Охарактеризуйте
+	сортировку перемешиванием?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Охарактеризуйте
+	сортировку вставками?</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Содержание
+отчета:</b> Название и цель работы, листинг
+задания для самостоятельной работы,
+ответы на контрольные вопросы.</span></font></font></font></p>
+<ol start="0">
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-before: always; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><b><span style="background: transparent">Задание
+	для самостоятельной работы </span></b></font></font></font>
+	</p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+1 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сортировки массива по
+	неубыванию массива шейкерной сортировкой
+	.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сравниваю производительность
+	шейкерной и пузырьковой сортировки.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+2</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сортировки массива по
+	невозрастанию массива шейкерной
+	сортировкой .</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сравниваю производительность
+	шейкерной и сортировки простого обмена.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+3 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сортировки по неубыванию
+	массива пузырьком.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сравниваю производительность
+	сортировки перемешиванием и пузырьковой
+	сортировки.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+4 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сортировки массива по
+	невозрастанию массива пузырьком.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сравниваю производительность
+	сортировки перемешиванием и сортировки
+	простого обмена.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+5 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сортировки массива по
+	неубыванию массива сортировкой
+	вставками.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сравниваю производительность
+	сортировки пузырьком и сортировки
+	вставками.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+6 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сортировки массива по
+	невозрастанию массива сортировкой
+	вставками.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сравниваю производительность
+	сортировки простым обменом и сортировки
+	вставками.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+7 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сортировки массива по
+	неубыванию массива сортировкой простыми
+	обменами.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сравниваю производительность
+	шейкерной сортировки и сортировки
+	вставками.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+8 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сортировки массива по
+	невозрастанию массива сортировкой
+	простыми обменами.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сравниваю производительность
+	сортировки перемешиванием и сортировки
+	вставками.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+9 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сортировки массива по
+	невозрастанию массива Сортировкой
+	перемешивания.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сравниваю производительность
+	шейкерной сортировки и сортировки
+	вставками.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+10 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	программу сортировки массива по
+	неубыванию массива Сортировкой
+	перемешивания.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span lang="ru-RU">Написать
+	программу сравниваю производительность
+	сортировки перемешиванием и пузырьковой
+	сортировки.</span></span></font></font></font></p>
+</ol>
+</body>
+</html>

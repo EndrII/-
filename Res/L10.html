@@ -1,0 +1,439 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2017-05-21T23:09:02.326666647"/>
+	<style type="text/css">
+		@page { margin-left: 1.18in; margin-right: 0.39in; margin-top: 0.79in; margin-bottom: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		pre.cjk { font-family: "Courier New", monospace }
+		a:link { so-language: zxx }
+	</style>
+</head>
+<body lang="ru-RU" dir="ltr">
+<ol>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><b><span style="background: transparent"><span lang="en-US">Занятие</span><span lang="en-US">
+	№</span><span lang="en-US">10</span></span></b></font></font></font></p>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; font-variant: normal; letter-spacing: -0.8pt; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><span style="background: transparent">Объекты
+	в с++</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Цель</b>:
+Научить создавать прототипы объектов
+и их экземпляры в с++. </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Ход
+работы</b>: изучить описание к работе,
+выполнить практическую часть, оформить
+отчет и защитить работу.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><i><b>Объектно-ориентированное
+программирование (ООП)</b></i> — методология
+программирования, основанная на
+представлении программы в виде
+совокупности объектов, каждый из которых
+является экземпляром определенного
+класса, а классы образуют иерархию
+наследования.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><i><b>Абстракция
+данных</b></i>&nbsp;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Абстрагирование
+означает выделение значимой информации
+и исключение из рассмотрения незначимой.
+В ООП рассматривают лишь абстракцию
+данных (нередко называя её просто
+«абстракцией»), подразумевая набор
+значимых характеристик объекта, доступный
+остальной программе.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><i><b>Инкапсуляция</b></i>&nbsp;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Инкапсуляция
+— свойство системы, позволяющее
+объединить данные и методы, работающие
+с ними, в классе. Некоторые языки
+(например, С++) отождествляют инкапсуляцию
+с сокрытием, но большинство (Smalltalk,
+Eiffel, OCaml) различают эти понятия.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><i><b>Наследование</b></i>&nbsp;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Наследование
+— свойство системы, позволяющее описать
+новый класс на основе уже существующего
+с частично или полностью заимствующейся
+функциональностью. Класс, от которого
+производится наследование, называется
+базовым, родительским или суперклассом.
+Новый класс&nbsp;— потомком, наследником,
+дочерним или производным классом.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><i><b>Полиморфизм
+подтипов</b></i>&nbsp;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Полиморфизм
+подтипов (в ООП называемый просто
+«полиморфизмом»)&nbsp;— свойство системы,
+позволяющее использовать объекты с
+одинаковым интерфейсом без информации
+о типе и внутренней структуре объекта.
+Другой вид полиморфизма — параметрический
+— в ООП называют обобщённым
+программированием.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><i><b>Класс</b></i>
+</span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Класс
+является описываемой на языке терминологии
+исходного кода моделью ещё не существующей
+сущности (объекта). Фактически он
+описывает устройство объекта, являясь
+своего рода чертежом. Говорят, что
+объект&nbsp;— это&nbsp;экземпляр&nbsp;класса.
+При этом в некоторых исполняющих системах
+класс также может представляться
+некоторым объектом при выполнении
+программы посредством&nbsp;динамической
+идентификации типа данных. Обычно классы
+разрабатывают таким образом, чтобы их
+объекты соответствовали объектам
+предметной области.</span></font></font></font></p>
+<pre class="western" style="border: 1px solid #dddddd; padding: 0.02in; font-variant: normal; letter-spacing: normal; orphans: 2; widows: 2"><font color="#000000">  <font color="#008000"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><b>class</b></span></font></font></font> <font color="#0000ff"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><b>MyClass</b></span></font></font></font><font color="#666666"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">:</span></span></font></font></font> <font color="#008000"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><b>public</b></span></font></font></font> <font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">ParentClass </span></span></font></font><font color="#408080"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><i><span style="font-weight: normal">// ParentClass — класс-предок, если таковой имеется</span></i></font></font></font></font>
+<font color="#000000">  <font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">{</span></span></font></font></font>
+<font color="#000000">      <font color="#008000"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><b>public</b></span></font></font></font><font color="#666666"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">:</span></span></font></font></font></font>
+<font color="#000000">         <font color="#408080"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><i><span style="font-weight: normal">// элементы в этой секции доступны из любой части программы</span></i></font></font></font></font>
+<font color="#000000">         <font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">MyClass(); </span></span></font></font><font color="#408080"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><i><span style="font-weight: normal">// конструктор</span></i></font></font></font></font>
+<font color="#000000">         <font color="#666666"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">~</span></span></font></font></font><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">MyClass(); </span></span></font></font><font color="#408080"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><i><span style="font-weight: normal">// деструктор</span></i></font></font></font></font>
+<font color="#000000">      <font color="#008000"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><b>protected</b></span></font></font></font><font color="#666666"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">:</span></span></font></font></font></font>
+<font color="#000000">         <font color="#408080"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><i><span style="font-weight: normal">// элементы в этой секции доступны из класса и его потомков</span></i></font></font></font></font>
+<font color="#000000">      <font color="#008000"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><b>private</b></span></font></font></font><font color="#666666"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">:</span></span></font></font></font></font>
+<font color="#000000">         <font color="#408080"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><i><span style="font-weight: normal">// элементы в этой секции доступны только из класса; это область доступа по умолчанию</span></i></font></font></font></font>
+<font color="#000000">  </font><font color="#000000"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">};</span></span></font></font></font></pre><p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><i><b>Объект</b></i>&nbsp;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Сущность
+в&nbsp;адресном пространстве&nbsp;вычислительной
+системы, появляющаяся при создании
+экземпляра класса (например, после
+запуска результатов&nbsp;компиляции&nbsp;и&nbsp;связывания&nbsp;исходного
+кода на выполнение).</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><span style="font-style: normal">Пример</span></span>
+<span style="font-variant: normal"><span style="font-style: normal">создания
+класса </span></span></span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&lt;iostream&gt; </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">class
+point{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">private:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">float
+x,y;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">public:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">point(){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">x=0;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">y=0;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">point(const
+float&amp; _x,const float&amp; _y){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">x=_x;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">y=_y;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+setX(const float&amp; _x){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">x=_x;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+setY(const float&amp; _y){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">y=_y;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">float
+getX(){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+x;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">float
+getY(){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+y;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+print(){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">std::cout&lt;&lt;&quot;point{x=&quot;&lt;&lt;x&lt;&lt;&quot;,y=&quot;&lt;&lt;y&lt;&lt;&quot;};&quot;&lt;&lt;std::endl;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}
+</span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">};</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+main(){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">point
+*p=new point(1.77,1.33);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">p-&gt;print();</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">delete
+p;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+0;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Контрольные
+вопросы</b>:</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «Абстракция данных».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «Инкапсуляция».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «Наследование».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «Полиморфизм подтипов&nbsp;».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «Класс».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «Объект».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Синтаксис
+	создания Класса?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Синтаксис
+	создания объект?</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Содержание
+отчета:</b> Название и цель работы, листинг
+задания для самостоятельной работы,
+ответы на контрольные вопросы.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<ol start="0">
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-before: always; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><b><span style="background: transparent">Задание
+	для самостоятельной работы </span></b></font></font></font>
+	</p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Все
+варианты</span></font></font></font></p>
+<ol>
+	<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	Класс «Визитка» данный класс должен
+	хранить в себе информацию о владельце.
+	Должны быть реализованы методы: печати
+	информации, записи информации в файл
+	и возможности редактирования информации
+	о владельце.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+1 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	класс «Калькулятор», содержит методы
+	простых математических операций. (не
+	менее четырех).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+2</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	класс «Библиотека», содержит методы
+	добавления и удаления книг и метод
+	записи в файл.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+3 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	класс «Группа», содержит методы
+	добавления и удаления обучающихся и
+	метод записи в файл.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+4 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	класс «Матрица», данный класс должен
+	имитировать работу двумерного массива.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+5 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	класс «Крестики нолики», содержит
+	методы печати доски, и методы расстановок
+	крестиков и ноликов.</span></font></font></font></p>
+</ol>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+6 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	класс для решения квадратных уравнений,
+	содержит методы изменения параметров
+	(A,B, C) и метод поиска корней.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+7 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	класс «Блокнот», содержит метод чтения
+	текстовых файлов и печати содержимого
+	на экран. (не менее четырех).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+8 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	класс «Дневник», содержит методы
+	добавления, просмотра записей и методы
+	сохранения и чтения дневника из файла.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+9 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	класс «Калькулятор», содержит методы
+	простых математических операций. (не
+	менее четырех).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+10 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	класс «Группа», содержит методы
+	добавления и удаления обучающихся и
+	метод записи в файл.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+</body>
+</html>

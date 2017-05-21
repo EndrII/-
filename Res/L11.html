@@ -1,0 +1,560 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2017-05-21T23:09:10.870674403"/>
+	<style type="text/css">
+		@page { margin-left: 1.18in; margin-right: 0.39in; margin-top: 0.79in; margin-bottom: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		h2.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt }
+		h2.cjk { font-family: "Droid Sans Fallback"; font-size: 16pt }
+		h2.ctl { font-family: "FreeSans"; font-size: 16pt }
+		a:link { so-language: zxx }
+		code.cjk { font-family: "Nimbus Mono L", monospace }
+	</style>
+</head>
+<body lang="ru-RU" dir="ltr">
+<ol>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><b><span style="background: transparent"><span lang="en-US">Занятие</span><span lang="en-US">
+	№</span><span lang="en-US">11</span></span></b></font></font></font></p>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; font-variant: normal; letter-spacing: -0.8pt; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><span style="background: transparent">Шаблонные
+	классы с++</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Цель</b>:
+Научить создавать шаблонные классы
+с++, закрепить знания односвязных и много
+связных списков. </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Ход
+работы</b>: изучить описание к работе,
+выполнить практическую часть, оформить
+отчет и защитить работу.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Шаблоны&nbsp;</b>(англ.&nbsp;<span lang="en-US">template</span>)&nbsp;—
+средство языка&nbsp;C++, предназначенное
+для кодирования&nbsp;обобщённых алгоритмов,
+без привязки к некоторым параметрам
+(например,&nbsp;типам данных, размерам
+буферов, значениям по умолчанию).</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В&nbsp;C++&nbsp;возможно
+создание шаблонов&nbsp;функций&nbsp;и&nbsp;классов.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Шаблоны
+позволяют создавать параметризованные
+классы и функции. Параметром может быть
+любой тип или значение одного из
+допустимых типов (целое число, enum,
+указатель на любой объект с глобально
+доступным именем, ссылка). Например, нам
+нужен какой-то класс:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><font color="#008000"><b>class</b></font>
+<font color="#0000ff"><b>SomeClass</b></font>{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><font color="#b00040"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">int</span></span></font></font></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">SomeValue;</span></span></font></font></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><font color="#b00040"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">int</span></span></font></font></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">SomeArray[</span></span></font></font></span><span style="font-variant: normal"><font color="#666666"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">20</span></span></font></font></font></span><span style="font-variant: normal"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="font-style: normal"><span style="font-weight: normal">];</span></span></font></font></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="background: transparent">...</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">};</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Для
+одной конкретной цели мы можем использовать
+этот класс. Но, вдруг, цель немного
+изменилась, и нужен еще один класс.
+Теперь нужно 30 элементов массива&nbsp;</span></font></font></font><code class="western"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">SomeArray</span></font></font></font></code><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">&nbsp;и
+вещественный тип&nbsp;</span></font></font></font><code class="western"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">SomeValue</span></font></font></font></code><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">&nbsp;элементов&nbsp;</span></font></font></font><code class="western"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">SomeArray</span></font></font></font></code><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">.
+Тогда мы можем абстрагироваться от
+конкретных типов и использовать шаблоны
+с параметрами. Синтаксис: в начале перед
+объявлением класса напишем слово&nbsp;</span></font></font></font><code class="western"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">template</span></font></font></font></code><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">&nbsp;и
+укажем параметры в угловых скобках. В
+нашем примере:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><font color="#008000"><b>template</b></font>
+<font color="#666666">&lt;</font> <font color="#b00040">int</font>
+ArrayLength, <font color="#008000"><b>typename</b></font>
+SomeValueType <font color="#666666">&gt;</font> <font color="#008000"><b>class</b></font>
+<font color="#0000ff"><b>SomeClass</b></font>{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="background: transparent">SomeValueType
+SomeValue;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="background: transparent">SomeValueType
+SomeArray[ ArrayLength ];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="monospace, Courier"><font size="2" style="font-size: 10pt"><span style="background: transparent">...</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">};</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Тогда
+для первой модели пишем:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">SomeClass
+&lt; 20, int &gt; SomeVariable;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">для
+второй:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">SomeClass
+&lt; 30, double &gt; SomeVariable2;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Хотя
+шаблоны предоставляют краткую форму
+записи участка кода, на самом деле их
+использование не сокращает исполняемый
+код, так как для каждого набора
+параметров&nbsp;компилятор&nbsp;создаёт
+отдельный экземпляр функции или класса.
+Как следствие, исчезает возможность
+совместного использования скомпилированного
+кода в рамках разделяемых библиотек.</span></font></font></font></p>
+<h2 class="western"><a name=".D0.A8.D0.B0.D0.B1.D0.BB.D0.BE.D0.BD.D1.8B_.D1.84.D1.83.D0.BD.D0.BA.D1.86.D0.B8.D0.B9"></a>
+Шаблоны функций</h2>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Шаблон
+функции начинается с ключевого
+слова&nbsp;</span></font></font></font><code class="western"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">template</span></font></font></font></code><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">,
+за которым в угловых скобках следует
+список параметров. Затем следует
+объявление функции:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><font color="#008000"><b>template</b></font><font color="#666666">&lt;</font>
+<font color="#008000"><b>typename</b></font> T <font color="#666666">&gt;</font>
+</span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><font color="#b00040">void</font>
+sort( T array[], <font color="#b00040">int</font> size ); <font color="#408080"><i>//
+прототип: шаблон sort объявлен, но не
+определён </i></font></span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><font color="#008000"><b>template</b></font><font color="#666666">&lt;</font>
+<font color="#008000"><b>typename</b></font> T <font color="#666666">&gt;</font></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><font color="#b00040">void</font>
+sort( T array[], <font color="#b00040">int</font> size ) <font color="#408080"><i>//
+объявление и определение</i></font></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">T
+t;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><font color="#008000"><span style="font-style: normal"><b>for</b></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">(</span></span></span><span style="font-variant: normal"><font color="#b00040"><span style="font-style: normal"><span style="font-weight: normal">int</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">i
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">=</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">0</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">;
+i </span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">&lt;</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">size
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">-</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">1</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">;
+i</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">++</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">)</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><font color="#008000"><span style="font-style: normal"><b>for</b></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">(</span></span></span><span style="font-variant: normal"><font color="#b00040"><span style="font-style: normal"><span style="font-weight: normal">int</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">j
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">=</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">size
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">-</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">1</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">;
+j </span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">&gt;</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">i;
+j</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">--</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">)</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><font color="#008000"><span style="font-style: normal"><b>if</b></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">(array[j]
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">&lt;</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">array[j</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">-1</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">])</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">t
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">=</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">array[j];</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">array[j]
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">=</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">array[j</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">-1</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">];</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">array[j</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">-1</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">]
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">=</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">t;</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}
+</span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><font color="#008000"><b>template</b></font><font color="#666666">&lt;</font>
+<font color="#b00040">int</font> BufferSize <font color="#666666">&gt;</font>
+<font color="#408080"><i>// целочисленный параметр</i></font></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><font color="#b00040">char</font><font color="#666666">*</font>
+read()</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><font color="#b00040"><span style="font-style: normal"><span style="font-weight: normal">char</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">*</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">Buffer
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">=</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><font color="#008000"><span style="font-style: normal"><b>new</b></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><font color="#b00040"><span style="font-style: normal"><span style="font-weight: normal">char</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">[
+BufferSize ];</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#408080"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><i><span style="background: transparent">/*
+считывание данных */</span></i></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><span style="font-variant: normal"><font color="#008000"><span style="font-style: normal"><b>return</b></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">Buffer;</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Ключевое
+слово&nbsp;</span></font></font></font><code class="western"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">typename</span></font></font></font></code><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">&nbsp;появилось
+сравнительно недавно, поэтому
+стандарт&nbsp;допускает
+использование&nbsp;</span></font></font></font><code class="western"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">class</span></font></font></font></code><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">&nbsp;вместо&nbsp;</span></font></font></font><code class="western"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">typename</span></font></font></font></code><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">template&lt;
+class T &gt;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вместо
+T допустим любой другой идентификатор.</span></font></font></font></p>
+<h2 class="western"><a name=".D0.9F.D1.80.D0.B8.D0.BC.D0.B5.D1.80_.D0.B8.D1.81.D0.BF.D0.BE.D0.BB.D1.8C.D0.B7.D0.BE.D0.B2.D0.B0.D0.BD.D0.B8.D1.8F"></a>
+Пример использования</h2>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Простейшим
+примером служит определение минимума
+из двух величин.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Если
+a меньше b то вернуть а, иначе — вернуть
+b</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+отсутствие шаблонов программисту
+приходится писать отдельные функции
+для каждого используемого типа данных.
+Хотя многие языки программирования
+определяют встроенную функцию минимума
+для элементарных типов (таких как целые
+и вещественные числа), такая функция
+может понадобиться и для сложных
+(например «время» или «строка») и очень
+сложных («игрок» в онлайн-игре) объектов.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Так
+выглядит шаблон функции определения
+минимума:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent"><font color="#008000"><b>template</b></font><font color="#666666">&lt;</font>
+<font color="#008000"><b>typename</b></font> T <font color="#666666">&gt;</font></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent">T
+min( T a, T b )</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent"><span style="font-variant: normal"><font color="#008000"><span style="font-style: normal"><b>return</b></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">a
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">&lt;</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">b
+</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">?</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><font color="#a0a000"><span style="font-style: normal"><span style="font-weight: normal">a</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">:
+b;</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вызов
+шаблонной функции:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">min&lt;int&gt;(1,4);
+// нахождение минимального значения
+среди чисел.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">min&lt;string&gt;(&quot;testTsxt&quot;,&quot;Testtext&quot;);
+// нахождение минимального значения
+среди строк.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Шаблоны
+классов</b> </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+классе, реализующем связный список
+целых чисел, алгоритмы добавления нового
+элемента списка, поиска нужного элемента
+не зависят от того, что элементы списка
+— целые числа. Те же алгоритмы применялись
+бы и для списка символов, строк, дат,
+классов игроков, и так далее.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent"><font color="#008000"><b>template</b></font><font color="#666666">&lt;</font>
+<font color="#008000"><b>class</b></font> <font color="#0000ff"><b>T</b></font>
+<font color="#666666">&gt;</font></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent"><font color="#008000"><b>class</b></font>
+<font color="#0000ff"><b>List</b></font></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#408080"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><i><span style="background: transparent">/*
+... */</span></i></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent"><font color="#008000"><b>public</b></font><font color="#666666">:</font></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent"><span style="font-variant: normal"><font color="#b00040"><span style="font-style: normal"><span style="font-weight: normal">void</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">Add(
+</span></span></span><span style="font-variant: normal"><font color="#008000"><span style="font-style: normal"><b>const</b></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">T</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">&amp;</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">Element
+);</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent"><span style="font-variant: normal"><font color="#b00040"><span style="font-style: normal"><span style="font-weight: normal">bool</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><font color="#0000ff"><span style="font-style: normal"><span style="font-weight: normal">Find</span></span></font></span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">(
+</span></span></span><span style="font-variant: normal"><font color="#008000"><span style="font-style: normal"><b>const</b></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">T</span></span></span><span style="font-variant: normal"><font color="#666666"><span style="font-style: normal"><span style="font-weight: normal">&amp;</span></span></font></span><span style="font-variant: normal">
+</span><span style="font-variant: normal"><span style="font-style: normal"><span style="font-weight: normal">Element
+);</span></span></span></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#408080"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><i><span style="background: transparent">/*
+... */</span></i></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Liberation Sans, sans-serif"><font size="3" style="font-size: 12pt"><span style="background: transparent">};</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Для
+использования шаблона класса, необходимо
+указать его параметры:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">List&lt;int&gt;
+li;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">List&lt;string&gt;
+ls;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">li.Add(
+17 );</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">ls.Add(
+&quot;Hello!&quot; );</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Пример
+шаблонного класса «Стек»</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&lt;iostream&gt;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&lt;exception&gt;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">using
+namespace std;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">template
+&lt;typename Type&gt; //шаблонная структура
+элементов стека </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+Item{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Type
+top;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Item&lt;Type&gt;
+*next;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">};</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">template
+&lt;typename Type&gt; </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">class
+stack{ </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">private:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Item&lt;Type&gt;
+*source; // елемент стека </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+size; //размер стека </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">public:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">explicit
+stack(){ // конструктор </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">source=NULL;
+</span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">size=0;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+push(Type item){ // метод добавления элементов
+</span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">size++;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Item&lt;Type&gt;
+*temp=source;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">source=new
+Item&lt;Type&gt;;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">source-&gt;top=item;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">source-&gt;next=temp;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Type
+pop(){ // метод изъятия элемента </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(size){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Type
+temp=source-&gt;top;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Item&lt;Type&gt;*
+temp2=source;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">source=source-&gt;next;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">delete
+temp2;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">size--;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+temp;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}else{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">throw
+runtime_error(&quot;stack empty!&quot;); выброс исключения
+если стек пуст </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">~stack(){
+// диструктор стека </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">while(size--){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">pop();</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">};</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+main(){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">stack&lt;int&gt;
+s;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">s.push(3);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">s.push(6);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">s.push(1);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">cout&lt;&lt;s.pop()&lt;&lt;endl;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">cout&lt;&lt;s.pop()&lt;&lt;endl;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">cout&lt;&lt;s.pop()&lt;&lt;endl;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+0;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Контрольные
+вопросы</b>:</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «Шаблон».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Чем
+	отличается шаблонный класс от обычного?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Для
+	чего предназначены шаблонные классы?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Синтаксис
+	создания шаблонного класса?</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Содержание
+отчета:</b> Название и цель работы, листинг
+задания для самостоятельной работы,
+ответы на контрольные вопросы.</span></font></font></font></p>
+<ol start="0">
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-before: always; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><b><span style="background: transparent">Задание
+	для самостоятельной работы </span></b></font></font></font>
+	</p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Оформить
+свой односвязный список (лабораторная
+работа №5) в виде шаблонного класса и
+продемонстрировать работу всех методов
+этого класса.</span></font></font></font></p>
+</body>
+</html>

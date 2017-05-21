@@ -1,0 +1,876 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2017-05-21T23:08:42.239691361"/>
+	<style type="text/css">
+		@page { margin-left: 1.18in; margin-right: 0.39in; margin-top: 0.79in; margin-bottom: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		pre.cjk { font-family: "Courier New", monospace }
+		a:link { so-language: zxx }
+	</style>
+</head>
+<body lang="ru-RU" dir="ltr">
+<ol>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><b><span style="background: transparent">Занятие
+	№7</span></b></font></font></font></p>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; font-variant: normal; letter-spacing: -0.8pt; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><span style="background: transparent">Односвязные
+	списки</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Цель</b>:
+научиться создавать односвязные списки
+и управлять ими.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Ход
+работы</b>: изучить описание к работе,
+выполнить практическую часть, оформить
+отчет и защитить работу.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+односвязном списке каждый элемент
+информации содержит ссылку на следующий
+элемент списка. Каждый элемент данных
+обычно представляет собой структуру,
+которая состоит из информационных полей
+и указателя связи. Концептуально
+односвязный список выглядит так, как
+показано на рис. 1.</span></font></font></font></p>
+<center>
+	<table width="100%" cellpadding="2" cellspacing="0">
+		<col width="256*">
+		<tr>
+			<td width="100%" style="border: none; padding: 0in">
+				<pre class="western" style="margin-left: 0.2in"><font color="#461b7e">+---------+    +---------+    +---------+</font>
+<font color="#461b7e"><span lang="ru-RU">| данные  |    | данные  |    | данные  |</span></font>
+<font color="#461b7e"><span lang="ru-RU">+---------+    +---------+    +---------+</span></font>
+<font color="#461b7e"><span lang="ru-RU">|указатель|---&gt;|указатель|---&gt;|    0    |</span></font>
+<font color="#461b7e"><span lang="ru-RU">+---------+    +---------+    +---------+</span></font></pre>
+			</td>
+		</tr>
+	</table>
+</center>
+<p align="justify" style="text-indent: 0.39in"><i>Рис. 1
+Односвязный список</i></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Существует
+два основных способа построения
+односвязного списка. Первый способ —
+помещать новые элементы в конец списка.
+Второй — вставлять элементы в определенные
+позиции списка, например, в порядке
+возрастания. От способа построения
+списка зависит алгоритм функции
+добавления элемента. Давайте начнем с
+более простого способа создания списка
+путем помещения элементов в конец.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Как
+правило, элементы связанного списка
+являются структурами, так как, помимо
+данных, они содержат ссылку на следующий
+элемент. Поэтому необходимо определить
+структуру, которая будет использоваться
+в последующих примерах. Поскольку списки
+рассылки обычно хранятся в связанных
+списках, хорошим выбором будет структура,
+описывающая почтовый адрес. Ее описание
+показано ниже:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address {</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+name[40];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+street[40];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+city[20];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+state[3];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+zip[11];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address *next; /* ссылка на следующий адрес */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}
+info;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Приведенная
+ниже функция slstore() создает односвязный
+список путем помещения каждого очередного
+элемента в конец списка. В качестве
+параметров ей передаются указатель на
+структуру типа address, содержащую новую
+запись, и указатель на последний элемент
+списка. Если список пуст, указатель на
+последний элемент должен быть равен
+нулю.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+slstore(struct address *i,</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address **last)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!*last)
+*last = i; /* первый элемент в списке */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else
+(*last)-&gt;next = i;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">i-&gt;next
+= NULL;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">*last
+= i;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Несмотря
+на то, что созданный с помощью функции
+slstore() список можно отсортировать
+отдельной операцией уже после его
+создания, легче сразу создавать
+упорядоченный список, вставляя каждый
+новый элемент в нужное место в
+последовательности. Кроме того, если
+список уже отсортирован, имеет смысл
+поддерживать его упорядоченность,
+вставляя новые элементы в соответствующие
+позиции. Для вставки элемента таким
+способом требуется последовательно
+просматривать список до тех пор, пока
+не будет найдено место нового элемента,
+затем вставить в найденную позицию
+новую запись и переустановить ссылки.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">При
+вставке элемента в односвязный список
+может возникнуть одна из трех ситуаций:
+элемент становится первым, элемент
+вставляется между двумя другими, элемент
+становится последним. На рис. 2 показана
+схема изменения ссылок в каждом случае.</span></font></font></font></p>
+<center>
+	<table width="100%" cellpadding="2" cellspacing="0">
+		<col width="256*">
+		<tr>
+			<td width="100%" style="border: none; padding: 0in">
+				<pre class="western" style="margin-left: 0.2in"><font color="#461b7e"><b>Вставка в начало списка</b></font>
+
+<font color="#461b7e">                 <span lang="ru-RU">+----+            п                +----+</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">|new |            р                |new |</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">+----+            е                +----+</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">|    |            в   .------------|    |</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">+----+            р   |            +----+</span></font>
+<font color="#461b7e">                                   <span lang="ru-RU">а   |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+----+    +----+    +----+  щ в |  +----+    +----+    +----+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|info|    |info|    |info|  а   |  |info|    |info|    |info|</span></font>
+<font color="#461b7e"><span lang="ru-RU">\/\/\-&gt;+----+    +----+    +----+  е   |  +----+    +----+    +----+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|    |---&gt;|    |---&gt;| 0  |  т   '-&gt;|    |---&gt;|    |---&gt;| 0  |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+----+    +----+    +----+  с      +----+    +----+    +----+</span></font>
+<font color="#461b7e">                                   <span lang="ru-RU">я</span></font>
+
+<font color="#461b7e"><span lang="ru-RU"><b>Вставка в середину списка</b></span></font>
+
+<font color="#461b7e">                 <span lang="ru-RU">+----+            п                    +----+</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">|new |            р                    |new |</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">+----+            е                    +----+</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">|    |            в        .----------&gt;|    |</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">+----+            р        |        .--+----+</span></font>
+<font color="#461b7e">                                   <span lang="ru-RU">а        |        | </span></font>
+<font color="#461b7e">       <span lang="ru-RU">+----+    +----+    +----+  щ в      | +----+ |  +----+    +----+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|info|    |info|    |info|  а        | |info| |  |info| .-&gt;|info|</span></font>
+<font color="#461b7e"><span lang="ru-RU">\/\/\-&gt;+----+    +----+    +----+  е   \/\/\-&gt;+----+ |  +----+ |  +----+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|    |---&gt;|    |---&gt;| 0  |  т        '-|    | '-&gt;|    |-'  | 0  |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+----+    +----+    +----+  с          +----+    +----+    +----+</span></font>
+<font color="#461b7e">                                   <span lang="ru-RU">я</span></font>
+
+
+<font color="#461b7e"><span lang="ru-RU"><b>Вставка в конец списка</b></span></font>
+
+<font color="#461b7e">                 <span lang="ru-RU">+----+            п                    +----+</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">|new |            р                    |new |&lt;----------.</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">+----+            е                    +----+           |</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">|    |            в                    | 0  |           |</span></font>
+<font color="#461b7e">                 <span lang="ru-RU">+----+            р                    +----+           |</span></font>
+<font color="#461b7e">                                   <span lang="ru-RU">а                                     |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+----+    +----+    +----+  щ в        +----+    +----+    +----+ |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|info|    |info|    |info|  а          |info| .-&gt;|info|    |info| |</span></font>
+<font color="#461b7e"><span lang="ru-RU">\/\/\-&gt;+----+    +----+    +----+  е   \/\/\-&gt;+----+ |  +----+    +----+ |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|    |---&gt;|    |---&gt;| 0  |  т          |    |-'  |    |---&gt;|    |-'</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+----+    +----+    +----+  с          +----+    +----+    +----+</span></font>
+<font color="#461b7e">                                   <span lang="ru-RU">я</span></font></pre>
+			</td>
+		</tr>
+	</table>
+</center>
+<p align="justify" style="text-indent: 0.39in"><i>Рис. 2. Вставка
+элемента new в односвязный список (в
+котором info - поле данных)</i></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Следует
+помнить, что при вставке элемента в
+начало (первую позицию) списка необходимо
+также изменить адрес входа в список
+где-то в другом месте программы. Чтобы
+избежать этих сложностей, можно в
+качестве первого элемента списка хранить
+служебный сторожевой элемент. В случае
+упорядоченного списка необходимо
+выбрать некоторое специальное значение,
+которое всегда будет первым в списке,
+чтобы начальный элемент оставался
+неизменным. Недостатком данного метода
+является довольно большой расход памяти
+на хранение сторожевого элемента, но
+обычно это не столь важно.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Следующая
+функция, sls_store(), вставляет структуры
+типа address в список рассылки, упорядочивая
+его по возрастанию значений в поле name.
+Функция принимает указатели на указатели
+на первый и последний элементы списка,
+а также указатель на вставляемый элемент.
+Поскольку первый или последний элементы
+списка могут измениться, функция
+sls_store() при необходимости автоматически
+обновляет указатели на начало и конец
+списка. При первом вызове данной функции
+указатели first и last должны быть равны
+нулю.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">/*
+Вставка в упорядоченный односвязный
+список. */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+sls_store(struct address *i, /* новый элемент */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address **start, /* начало списка */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address **last) /* конец списка */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address *old, *p;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">p
+= *start;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!*last)
+{ /* первый элемент в списке */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">i-&gt;next
+= NULL;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">*last
+= i;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">*start
+= i;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">old
+= NULL;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">while(p)
+{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(strcmp(p-&gt;name,
+i-&gt;name)&lt;0) {</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">old
+= p;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">p
+= p-&gt;next;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else
+{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(old)
+{ /* вставка в середину */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">old-&gt;next
+= i;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">i-&gt;next
+= p;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">i-&gt;next
+= p; /* вставка в начало */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">*start
+= i;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">(*last)-&gt;next
+= i; /* вставка в конец */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">i-&gt;next
+= NULL;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">*last
+= i;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Последовательный
+перебор элементов связанного списка
+осуществляется очень просто: начать с
+начала и следовать указателям. Обычно
+фрагмент кода перебора настолько мал,
+что его вставляют в другую процедуру —
+например, функцию поиска, удаления или
+отображения содержимого. Так, приведенная
+ниже функция выводит на экран все имена
+из списка рассылки:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+display(struct address *start)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">while(start)
+{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">printf(&quot;%s\n&quot;,
+start-&gt;name);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">start
+= start-&gt;next;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">При
+вызове функции display() параметр start должен
+быть указателем на первую структуру в
+списке. После этого функция переходит
+к следующему элементу, на который
+указывает указатель в полеnext. Процесс
+прекращается, когда next равно нулю.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Для
+получения элемента из списка нужно
+просто пройти по цепочке ссылок. Ниже
+приведен пример функции поиска по
+содержимому поля name:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address *search(struct address *start, char *n)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">while(start)
+{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!strcmp(n,
+start-&gt;name)) return start;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">start
+= start-&gt;next;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+NULL; /* подходящий элемент не найден */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Поскольку
+функция search() возвращает указатель на
+элемент списка, содержащий искомое имя,
+возвращаемый тип описан как указатель
+на структуру address. При отсутствии в
+списке подходящих элементов возвращается
+нуль (NULL).</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Удаление
+элемента из односвязного списка
+выполняется просто. Так же, как и при
+вставке, возможны три случая: удаление
+первого элемента, удаление элемента в
+середине, удаление последнего элемента.
+На рис. 3 показаны все три операции.</span></font></font></font></p>
+<center>
+	<table width="100%" cellpadding="2" cellspacing="0">
+		<col width="256*">
+		<tr>
+			<td width="100%" style="border: none; padding: 0in">
+				<pre class="western" style="margin-left: 0.2in"><font color="#461b7e"><b>Удаление первого элемента списка</b></font>
+<font color="#461b7e">                                   </font>
+<font color="#461b7e">       <span lang="ru-RU">+------+    +------+    +------+  </span></font>
+<font color="#461b7e">       <span lang="ru-RU">|данные|    |данные|    |данные|</span></font>
+<font color="#461b7e"><span lang="ru-RU">\/\/\-&gt;+------+    +------+    +------+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|      |---&gt;|      |---&gt;|  0   |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+------+    +------+    +------+</span></font>
+
+<font color="#461b7e">                   <span lang="ru-RU">превращается в</span></font>
+
+<font color="#461b7e">       <span lang="ru-RU">+------+        +------+    +------+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|удален| \/\/\-&gt;|данные| .-&gt;|данные|</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+------+        +------+ |  +------+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|  0   |        |      |-'  |  0   |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+------+        +------+    +------+</span></font>
+
+<font color="#461b7e"><span lang="ru-RU"><b>Удаление среднего элемента списка</b></span></font>
+<font color="#461b7e">                                   </font>
+<font color="#461b7e">       <span lang="ru-RU">+------+    +------+    +------+  </span></font>
+<font color="#461b7e">       <span lang="ru-RU">|данные|    |данные|    |данные|</span></font>
+<font color="#461b7e"><span lang="ru-RU">\/\/\-&gt;+------+    +------+    +------+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|      |---&gt;|      |---&gt;|  0   |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+------+    +------+    +------+</span></font>
+
+<font color="#461b7e">                   <span lang="ru-RU">превращается в</span></font>
+
+<font color="#461b7e">       <span lang="ru-RU">+------+    +------+    +------+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|данные|    |удален|    |данные|</span></font>
+<font color="#461b7e"><span lang="ru-RU">\/\/\-&gt;+------+    +------+    +------+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|      |    |  0   | .-&gt;|  0   |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+------+    +------+ |  +------+</span></font>
+<font color="#461b7e">             <span lang="ru-RU">\______________|</span></font>
+
+<font color="#461b7e"><span lang="ru-RU"><b>Удаление последнего элемента списка</b></span></font>
+<font color="#461b7e">                                   </font>
+<font color="#461b7e">       <span lang="ru-RU">+------+    +------+    +------+  </span></font>
+<font color="#461b7e">       <span lang="ru-RU">|данные|    |данные|    |данные|</span></font>
+<font color="#461b7e"><span lang="ru-RU">\/\/\-&gt;+------+    +------+    +------+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|      |---&gt;|      |---&gt;|  0   |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+------+    +------+    +------+</span></font>
+
+<font color="#461b7e">                   <span lang="ru-RU">превращается в</span></font>
+
+<font color="#461b7e">       <span lang="ru-RU">+------+    +------+    +------+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|данные|    |данные|    |удален|</span></font>
+<font color="#461b7e"><span lang="ru-RU">\/\/\-&gt;+------+    +------+    +------+</span></font>
+<font color="#461b7e">       <span lang="ru-RU">|      |---&gt;|  0   |    |  0   |</span></font>
+<font color="#461b7e">       <span lang="ru-RU">+------+    +------+    +------+</span></font></pre>
+			</td>
+		</tr>
+	</table>
+</center>
+<p align="justify" style="text-indent: 0.39in"><i>Рис. 3. Удаление
+элемента из односвязного списка</i></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Ниже
+приведена функция, удаляющая заданный
+элемент из списка структур address.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+sldelete(</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address *p, /* предыдущий элемент */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address *i, /* удаляемый элемент */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address **start, /* начало списка */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+address **last) /* конец списка */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(p)
+p-&gt;next = i-&gt;next;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else
+*start = i-&gt;next;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(i==*last
+&amp;&amp; p) *last = p;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Функции
+sldelete() необходимо передавать указатели
+на удаляемый элемент, предшествующий
+удаляемому, а также на первый и последний
+элементы. При удалении первого элемента
+указатель на предшествующий элемент
+должен быть равен нулю (NULL). Данная
+функция автоматически обновляет
+указатели start и last, если один из них
+ссылается на удаляемый элемент.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">У
+односвязных списков есть один большой
+недостаток: односвязный список невозможно
+прочитать в обратном направлении. По
+этой причине обычно применяются
+двусвязные списки.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: always">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Контрольные
+вопросы</b>:</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «<span lang="ru-RU">Односвязный
+	список</span>».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Что
+	представляет собой элемент односвязного
+	списка?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Чем
+	связанны элементы списка между собой?</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Содержание
+отчета:</b> Название и цель работы, листинг
+задания для самостоятельной работы,
+ответы на контрольные вопросы.</span></font></font></font></p>
+<ol start="0">
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-before: always; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><b><span style="background: transparent">Задание
+	для самостоятельной работы </span></b></font></font></font>
+	</p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+1 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру «стек» (односвязанный список,
+	где все элементы добавляются в начало
+	списка, а прочитать можно только элемент
+	находящийся на вершине стека т.&nbsp;е. В
+	начале списа) для списка должны быть
+	написонны функции чтения (Type top();),
+	добовления элемента (void push(const Type&amp;
+	item)), изьятие элемента (Type pop();) и печати
+	списка на экран (void print();). Продеманстрировать
+	работу всех функций односвязного
+	списка. В качестве базового типа данных
+	использовать int (Type=int).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию которая перекладыоет данные
+	из одного стека в другой сохроняя при
+	этом сохроняя его структуру. (использовать
+	стек из первой задачи).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+2</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру «стек» (односвязанный список,
+	где все элементы добавляются в конец
+	списка, а прочитать можно только элемент
+	находящийся на вершине стека т.&nbsp;е. В
+	начале списа) для списка должны быть
+	написонны функции чтения (Type top();),
+	добовления элемента (void push(const Type&amp;
+	item)), изьятие элемента (Type pop();) и печати
+	списка на экран (void print();). Продеманстрировать
+	работу всех функций односвязного
+	списка.В качестве базового типа данных
+	использовать char (Type=char).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию которая перекладыоет данные
+	из одного стека в другой сохроняя при
+	этом сохроняя его структуру. (использовать
+	стек из первой задачи).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+3 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру «стек» (односвязанный список,
+	где все элементы добавляются в начало
+	списка, а прочитать можно только элемент
+	находящийся на вершине стека т.&nbsp;е. В
+	начале списа) для списка должны быть
+	написонны функции чтения (Type top();),
+	добовления элемента (void push(const Type&amp;
+	item)), изьятие элемента (Type pop();) и печати
+	списка на экран (void print();). Продеманстрировать
+	работу всех функций односвязного
+	списка. В качестве базового типа данных
+	использовать char (Type=char).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию которая осуществяет поиск
+	элементов в стеке. (использовать стек
+	из первой задачи).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+4 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру односвязного списка (где все
+	элементы добавляются в начало списка,
+	а чтение осуществляеться с первго
+	элемента по последний. Для списка должны
+	быть написонны функции чтения (string
+	read();), добовления элемента (void push(const
+	Type&amp; item)), изьятие элемента (Type pop();) и
+	печати списка на экран (void print();).
+	Продеманстрировать работу всех функций
+	односвязного списка. В качестве базового
+	типа данных использовать char (Type=char).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию которая проводит инверсию всех
+	элементов списка (использовать список
+	из первой задачи).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+5 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру односвязного списка (где все
+	элементы добавляются в конец списка,
+	а чтение осуществляеться с первго
+	элемента по последний. Для списка должны
+	быть написонны функции чтения (string
+	read();), добовления элемента (void push(const
+	Type&amp; item)), изьятие элемента (Type pop();) и
+	печати списка на экран (void print();).
+	Продеманстрировать работу всех функций
+	односвязного списка. В качестве базового
+	типа данных использовать char (Type=char).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию которая осуществяет замену
+	элемента в списке. (использовать список
+	из первой задачи).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+6 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру односвязного списка (где все
+	элементы добавляются в конец списка,
+	а чтение осуществляеться с последнего
+	элемента по первый. Для списка должны
+	быть написонны функции чтения (string
+	read();), добовления элемента (void push(const
+	Type&amp; item)), изьятие элемента (Type pop();) и
+	печати списка на экран (void print();).
+	Продеманстрировать работу всех функций
+	односвязного списка. В качестве базового
+	типа данных использовать char (Type=char).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию которая перекладыоет данные
+	из одного списка в другой сохроняя при
+	этом его структуру. (использовать список
+	из первой задачи).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+7 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру односвязного списка (где все
+	элементы добавляются в конец списка,
+	а чтение осуществляеться с последнего
+	элемента по первый. Для списка должны
+	быть написонны функции чтения (string
+	read();), добовления элемента (void push(const
+	Type&amp; item)), изьятие элемента (Type pop();) и
+	печати списка на экран (void print();).
+	Продеманстрировать работу всех функций
+	односвязного списка. В качестве базового
+	типа данных использовать string (Type=char).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию которая осуществляет вставку
+	данных в список. (использовать список
+	из первой задачи).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+8 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру «стек» (односвязанный список,
+	где все элементы добавляются в начало
+	списка, а прочитать можно только элемент
+	находящийся на вершине стека т.&nbsp;е. В
+	начале списа) для списка должны быть
+	написонны функции чтения (Type top();),
+	добовления элемента (void push(const Type&amp;
+	item)), изьятие элемента (Type pop();) и печати
+	списка на экран (void print();). Продеманстрировать
+	работу всех функций односвязного
+	списка. В качестве базового типа данных
+	использовать char (Type=char).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию которая проводит инверсию всех
+	элементов стека (использовать стек из
+	первой задачи).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+9 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру односвязного списка (где все
+	элементы добавляются в конец списка,
+	а чтение осуществляеться с последнего
+	элемента по первый. Для списка должны
+	быть написонны функции чтения (string
+	read();), добовления элемента (void push(const
+	Type&amp; item)), изьятие элемента (Type pop();) и
+	печати списка на экран (void print();).
+	Продеманстрировать работу всех функций
+	односвязного списка. В качестве базового
+	типа данных использовать string (Type=char).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию которая осуществяет замену
+	элемента в списке. (использовать список
+	из первой задачи)</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+10 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру «стек» (односвязанный список,
+	где все элементы добавляются в начало
+	списка, а прочитать можно только элемент
+	находящийся на вершине стека т.&nbsp;е. В
+	начале списа) для списка должны быть
+	написонны функции чтения (Type top();),
+	добовления элемента (void push(const Type&amp;
+	item)), изьятие элемента (Type pop();) и печати
+	списка на экран (void print();). Продеманстрировать
+	работу всех функций односвязного
+	списка. В качестве базового типа данных
+	использовать int (Type=int).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию которая осуществляет вставку
+	данных в список. (использовать список
+	из первой задачи).</span></font></font></font></p>
+</ol>
+</body>
+</html>

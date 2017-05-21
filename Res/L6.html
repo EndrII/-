@@ -1,0 +1,672 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2017-05-21T23:09:42.703474525"/>
+	<meta name="created" content="00:00:00">
+	<meta name="changed" content="2017-05-21T23:08:33.391577007">
+	<style type="text/css">
+		@page { margin-left: 1.18in; margin-right: 0.39in; margin-top: 0.79in; margin-bottom: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		td p { margin-bottom: 0in; line-height: 120% }
+		th p { margin-bottom: 0in; line-height: 120% }
+		a:link { so-language: zxx }
+	</style>
+</head>
+<body lang="ru-RU" dir="ltr">
+<ol>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-after: avoid">
+	<font color="#000000"><span style="background: transparent"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><b>Занятие
+	№6</span></b></font></font></font></p>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; font-variant: normal; letter-spacing: -0.8pt; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><span style="background: transparent">Файлы</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Цель</b>:
+Научиться создавать, удалять, читать,
+записывать файлы всех видов и записывать
+динамические объекты в файл.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Ход
+работы</b>: изучить описание к работе,
+выполнить практическую часть, оформить
+отчет и защитить работу.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Большинство
+компьютерных программ работают с
+файлами, и поэтому возникает необходимость
+создавать, удалять, записывать читать,
+открывать файлы. Что же такое файл? Файл
+– именованный набор байтов, который
+может быть сохранен на некотором
+накопителе. Ну, теперь ясно, что под
+файлом понимается некоторая
+последовательность байтов, которая
+имеет своё, уникальное имя, например
+файл.txt. В одной директории не могут
+находиться файлы с одинаковыми именами.
+Под именем файла понимается не только
+его название, но и расширение, например:
+file.txt и file.dat — разные файлы, хоть и имеют
+одинаковые названия. Существует такое
+понятие, как полное имя файлов – это
+полный адрес к директории файла с
+указанием имени файла, например:
+D:\docs\file.txt..</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Для
+работы с файлами необходимо подключить
+заголовочный файл &lt;fstream&gt;. В &lt;fstream&gt;
+определены несколько классов и подключены
+заголовочные файлы &lt;ifstream&gt; — файловый
+ввод и &lt;ofstream&gt; — файловый вывод.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Файловый
+ввод/вывод аналогичен стандартному
+вводу/выводу, единственное отличие –
+это то, что ввод/вывод выполнятся не на
+экран, а в файл. Если ввод/вывод на
+стандартные устройства выполняется с
+помощью объектов cin и cout, то для организации
+файлового ввода/вывода достаточно
+создать собственные объекты, которые
+можно использовать аналогично операторам
+cin и cout.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Например,
+необходимо создать текстовый файл и
+записать в него строку Работа с файлами
+в С++. Для этого необходимо проделать
+следующие шаги:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">создать
+объект класса ofstream;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">связать
+объект класса с файлом, в который будет
+производиться запись;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">записать
+строку в файл;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">закрыть
+файл.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Почему
+необходимо создавать объект класса
+ofstream, а не класса ifstream? Потому, что нужно
+сделать запись в файл, а если бы нужно
+было считать данные из файла, то создавался
+бы объект класса ifstream.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">ofstream
+/*имя объекта*/; // объект класса ofstream</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Назовём
+объект – fout, Вот что получится:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">ofstream
+fout;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Для
+чего нам объект? Объект необходим, чтобы
+можно было выполнять запись в файл. Уже
+объект создан, но не связан с файлом, в
+который нужно записать строку.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fout.open(&quot;cppstudio.txt&quot;);
+// связываем объект с файлом</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Через
+операцию точка получаем доступ к методу
+класса open(), в круглых скобочках которого
+указываем имя файла. Указанный файл
+будет создан в текущей директории с
+программой. Если файл с таким именем
+существует, то существующий файл будет
+заменен новым. Итак, файл открыт, осталось
+записать в него нужную строку. Делается
+это так:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fout
+&lt;&lt; &quot;Работа с файлами в С++&quot;; //
+запись строки в файл</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Используя
+операцию передачи в поток совместно с
+объектом fout строка Работа с файлами в
+С++ записывается в файл. Так как больше
+нет необходимости изменять содержимое
+файла, его нужно закрыть, то есть отделить
+объект от файла.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fout.close();
+// закрываем файл</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Итог
+– создан файл со строкой Работа с файлами
+в С++.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Шаги
+1 и 2 можно объединить, то есть в одной
+строке создать объект и связать его с
+файлом. Делается это так:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">ofstream
+fout(&quot;cppstudio.txt&quot;); // создаём объект
+класса ofstream и связываем его с файлом
+cppstudio.txt</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Объединим
+весь код и получим следующую программу.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">//
+file.cpp: определяет точку входа для
+консольного приложения.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&quot;stdafx.h&quot;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&lt;fstream&gt;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">using
+namespace std;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+main(int argc, char* argv[])</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">ofstream
+fout(&quot;cppstudio.txt&quot;); // создаём объект
+класса ofstream для записи и связываем его
+с файлом cppstudio.txt</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fout
+&lt;&lt; &quot;Работа с файлами в С++&quot;; //
+запись строки в файл</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fout.close();
+// закрываем файл</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">system(&quot;pause&quot;);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+0;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Осталось
+проверить правильность работы программы,
+а для этого открываем файл cppstudio.txt и
+смотрим его содержимое, должно быть —
+Работа с файлами в С++.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Для
+того чтобы прочитать файл понадобится
+выполнить те же шаги, что и при записи
+в файл с небольшими изменениями:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">создать
+объект класса ifstream и связать его с
+файлом, из которого будет производиться
+считывание;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">прочитать
+файл;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">закрыть
+файл.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">//
+file_read.cpp: определяет точку входа для
+консольного приложения.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&quot;stdafx.h&quot;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&lt;fstream&gt;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&lt;iostream&gt;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">using
+namespace std;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+main(int argc, char* argv[])</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">setlocale(LC_ALL,
+&quot;rus&quot;); // корректное отображение
+Кириллицы</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+buff[50]; // буфер промежуточного хранения
+считываемого из файла текста</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">ifstream
+fin(&quot;cppstudio.txt&quot;); // открыли файл для
+чтения</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fin
+&gt;&gt; buff; // считали первое слово из файла</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">cout
+&lt;&lt; buff &lt;&lt; endl; // напечатали это слово</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fin.getline(buff,
+50); // считали строку из файла</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fin.close();
+// закрываем файл</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">cout
+&lt;&lt; buff &lt;&lt; endl; // напечатали эту строку</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">system(&quot;pause&quot;);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+0;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+программе показаны два способа чтения
+из файла, первый – используя операцию
+передачи в поток, второй – используя
+функцию getline(). В первом случае считывается
+только первое слово, а во втором случае
+считывается строка, длинной 50 символов.
+Но так как в файле осталось меньше 50
+символов, то считываются символы
+включительно до последнего. Обратите
+внимание на то, что считывание во второй
+раз продолжилось, после первого слова,
+а не с начала, так как первое слово было
+прочитано.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Программа
+сработала правильно, но не всегда так
+бывает, даже в том случае, если с кодом
+всё впорядке. Например, в программу
+передано имя несуществующего файла или
+в имени допущена ошибка. Что тогда? В
+этом случае ничего не произойдёт вообще.
+Файл не будет найден, а значит и прочитать
+его не возможно. Поэтому компилятор
+проигнорирует строки, где выполняется
+работа с файлом. В результате корректно
+завершится работа программы, но ничего,
+на экране показано не будет. Казалось
+бы это вполне нормальная реакции на
+такую ситуацию. Но простому пользователю
+не будет понятно, в чём дело и почему на
+экране не появилась строка из файла.
+Так вот, чтобы всё было предельно понятно
+в С++ предусмотрена такая функция —
+is_open(), которая возвращает целые значения:
+1 — если файл был успешно открыт, 0 —
+если файл открыт не был. Доработаем
+программу с открытием файла, таким
+образом, что если файл не открыт выводилось
+соответствующее сообщение.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&quot;stdafx.h&quot;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&lt;fstream&gt;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&lt;iostream&gt;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">using
+namespace std;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+main(int argc, char* argv[])</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">setlocale(LC_ALL,
+&quot;rus&quot;); // корректное отображение
+Кириллицы</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+buff[50]; // буфер промежуточного хранения
+считываемого из файла текста</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">ifstream
+fin(&quot;cppstudio.doc&quot;); // (ВВЕЛИ НЕ КОРРЕКТНОЕ
+ИМЯ ФАЙЛА)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if
+(!fin.is_open()) // если файл не открыт</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">cout
+&lt;&lt; &quot;Файл не может быть открыт!\n&quot;;
+// сообщить об этом</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fin
+&gt;&gt; buff; // считали первое слово из файла</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">cout
+&lt;&lt; buff &lt;&lt; endl; // напечатали это слово</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fin.getline(buff,
+50); // считали строку из файла</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fin.close();
+// закрываем файл</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">cout
+&lt;&lt; buff &lt;&lt; endl; // напечатали эту строку</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">system(&quot;pause&quot;);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+0;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p style="margin-top: 0.17in; margin-bottom: 0.08in; line-height: 100%; page-break-after: avoid">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Режимы
+открытия файлов</b> </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Режимы
+открытия файлов устанавливают характер
+использования файлов. Для установки
+режима в классе ios_base предусмотрены
+константы, которые определяют режим
+открытия файлов:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<dl>
+	<dd>
+	<table width="601" cellpadding="4" cellspacing="0">
+		<col width="158">
+		<col width="425">
+		<thead>
+			<tr>
+				<th width="158" bgcolor="#0081c2" style="border-top: 1px solid #dddddd; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+					<p align="left">Константа</p>
+				</th>
+				<th width="425" bgcolor="#0081c2" style="border: 1px solid #dddddd; padding: 0.04in">
+					<p align="left">Описание</p>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td width="158" bgcolor="#f9f9f9" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+					<p><strong><b>ios_base::in</b></strong></p>
+				</td>
+				<td width="425" bgcolor="#f9f9f9" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: 1px solid #dddddd; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+					<p align="justify">открыть файл для чтения</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+					<p><strong><b>ios_base::out</b></strong></p>
+				</td>
+				<td width="425" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: 1px solid #dddddd; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+					<p align="justify">открыть файл для записи</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" bgcolor="#f9f9f9" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+					<p><strong><b>ios_base::ate</b></strong></p>
+				</td>
+				<td width="425" bgcolor="#f9f9f9" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: 1px solid #dddddd; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+					<p align="justify">при открытии переместить
+					указатель в конец файла</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+					<p><strong><b>ios_base::app</b></strong></p>
+				</td>
+				<td width="425" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: 1px solid #dddddd; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+					<p align="justify">открыть файл для записи в
+					конец файла</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" bgcolor="#f9f9f9" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+					<p><strong><b>ios_base::trunc</b></strong></p>
+				</td>
+				<td width="425" bgcolor="#f9f9f9" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: 1px solid #dddddd; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+					<p align="justify">удалить содержимое файла,
+					если он существует</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="158" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+					<p><strong><b>ios_base::binary</b></strong></p>
+				</td>
+				<td width="425" style="border-top: none; border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd; border-right: 1px solid #dddddd; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+					<p align="justify">открытие файла в двоичном
+					режиме</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</dl>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Режимы
+открытия файлов можно устанавливать
+непосредственно при создании объекта
+или при вызове функции open().</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">ofstream
+fout(&quot;cppstudio.txt&quot;, ios_base::app); // открываем
+файл для добавления информации к концу
+файла</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">fout.open(&quot;cppstudio.txt&quot;,
+ios_base::app); // открываем файл для добавления
+информации к концу файла.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Режимы
+открытия файлов можно комбинировать с
+помощью поразрядной логической операции
+или |, например: ios_base::out | ios_base::trunc —
+открытие файла для записи, предварительно
+очистив его.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: always">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Контрольные
+вопросы</b>:</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+	каких режимах осуществляется открытие
+	файлов?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Опишите
+	режим открытия файла «ios_base::in»</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Опишите
+	режим открытия файла «ios_base::out»</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Опишите
+	режим открытия файла «ios_base::ate»</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Опишите
+	режим открытия файла «ios_base::app»</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Опишите
+	режим открытия файла «ios_base::trunc»</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Опишите
+	режим открытия файла «ios_base::binary»</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Содержание
+отчета:</b> Название и цель работы, листинг
+задания для самостоятельной работы,
+ответы на контрольные вопросы.</span></font></font></font></p>
+<ol start="0">
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-before: always; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><b><span style="background: transparent">Задание
+	для самостоятельной работы </span></b></font></font></font>
+	</p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+1 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+программу которая создает файл с ФИО
+создателя, а так же читает его содержимое.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+2</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+программу которая создает файл с списком
+группы создателя, а так же читает его
+содержимое.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+3 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+программу которая создает файл с
+результатами экзаменов группы студентов,
+имена студентов вводятся пользователем,
+а оценки они получают сами (Случайные
+числа).</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+4 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+программу которая создает файл с данными
+об автомобилях(их технические
+характеристики, не менее трех), программа
+должна писать всего 1 файл дополняя его
+новыми авто.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+5 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+программу которая сортирует по неубыванию.
+файл с списком студентов и их средним
+баллом. Результаты сортировки выводит
+на экран.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+6 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+программу которая сортирует по неубыванию.
+файл с списком студентов и их средним
+баллом. Результаты Пишет в новый файл.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+7 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+программу которая шифрует введенный
+текст, а так же расшифровывает текст в
+файле. Результаты шифровки должны быть
+записаны в файл, а результаты расшифровки
+выведены на экран.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+8 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+программу которая шифрует введенный
+текст, а так же расшифровывает текст в
+файле. Результаты шифровки и расшифровки
+должны быть записаны в файл.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+9 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+программу которая удаляет из файла
+выбранные символы (символы вводятся с
+клавиатуры).</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+10 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+программу которая делает замены в файле
+(символы вводятся с клавиатуры).</span></font></font></font></p>
+</body>
+</html>

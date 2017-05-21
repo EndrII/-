@@ -1,0 +1,86 @@
+<HRML>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+	<title>Advent c++</title>
+<script type="text/javascript" src="./jquery-3.1.0.js"></script>
+</head>
+	<style>
+		.Glass {
+  position: relative;
+  display: inline-block;
+  color: #777674;
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: rgba(255,255,255,.5) 1px 1px, rgba(100,100,100,.3) 3px 7px 3px;
+  user-select: none;
+  padding: 1em 2em;
+  outline: none;
+  border-radius: 3px / 100%;
+  background-image:
+   linear-gradient(45deg, rgba(255,255,255,.0) 30%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%),
+   linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0) 20%, rgba(255,255,255,0) 90%, rgba(255,255,255,.3)),
+   linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+   linear-gradient(to right, rgba(125,125,125,1), rgba(255,255,255,.9) 45%, rgba(125,125,125,.5)),
+   linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5)),
+   linear-gradient(to right, rgba(223,190,170,1), rgba(255,255,255,.9) 45%, rgba(223,190,170,.5));
+  background-repeat: no-repeat;
+  background-size: 200% 100%, auto, 100% 2px, 100% 2px, 100% 1px, 100% 1px;
+  background-position: 200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+  box-shadow: rgba(0,0,0,.5) 3px 10px 10px -10px;
+}
+.Glass:hover {
+  transition: .5s linear;
+  background-position: -200% 0, 0 0, 0 0, 0 100%, 0 4px, 0 calc(100% - 4px);
+}
+.Glass:active {
+  top: 1px;
+}
+		#home{
+			width:97%;
+			height:3%;
+			color: #FFFFFF;
+			background-color:#777777;
+			border-radius:3px;
+			border:none;
+			height:4%;
+			float:center;
+		}
+		#container{
+			width:100%;
+			height:80%;
+			top: 20%;		
+		}
+		
+		#home2{
+			width:40%;
+			height:3%;
+			color: #FFFFFF;
+			background-color:#777777;
+			border-radius:3px;
+			border:none;
+			height:4%;
+			float:center;
+		}
+	</style>
+	<center>
+	
+	<div id=pane>
+		<a id=home type="button" href="./home.html" target="main" class="Glass"><span> Главная</span></a><br>
+		<a type="button" href="./L1.html" target="main" class="Glass"> Занятие №1</a>
+		<a type="button" href="./L2.html" target="main" class="Glass"> Занятие №2</a>
+		<a type="button" href="./L3.html" target="main" class="Glass"> Занятие №3</a>
+		<a type="button" href="./L4.html" target="main" class="Glass"> Занятие №4</a>
+		<a type="button" href="./L5.html" target="main" class="Glass"> Занятие №5</a>
+		<a type="button" href="./L6.html" target="main" class="Glass"> Занятие №6</a><br>
+		<a type="button" href="./L7.html" target="main" class="Glass"> Занятие №7</a>
+		<a type="button" href="./L8.html" target="main" class="Glass"> Занятие №8</a>
+		<a type="button" href="./L9.html" target="main" class="Glass"> Занятие №9</a>
+		<a type="button" href="./L10.html" target="main" class="Glass"> Занятие №10</a>
+		<a type="button" href="./L11.html" target="main" class="Glass"> Занятие №11</a>
+		<a type="button" href="./L12.html" target="main" class="Glass"> Занятие №12</a><br>
+		<a id=home type="button" href="http://ru.cppreference.com/w/" target="main" class="Glass"><span>Документация С++</span></a><br>
+		<a id=home type="button" href="./help.html" target="main" class="Glass"><span>Рекомендуемая литература</span></a><br>		
+	</div>
+	</center>
+	<div id="container"></div>
+</HTML>

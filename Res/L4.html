@@ -1,0 +1,463 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2017-05-21T23:08:10.191785671"/>
+	<style type="text/css">
+		@page { margin-left: 1.18in; margin-right: 0.39in; margin-top: 0.79in; margin-bottom: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		a:link { so-language: zxx }
+	</style>
+</head>
+<body lang="ru-RU" dir="ltr">
+<ol>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><b><span style="background: transparent">Занятие
+	№4</span></b></font></font></font></p>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; font-variant: normal; letter-spacing: -0.8pt; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><span style="background: transparent">Рекурсия
+	и итерация.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Цель</b>:
+ознакомиться с работой рекурсивных
+алгоритмов.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Ход
+работы</b>: изучить описание к работе,
+выполнить практическую часть, оформить
+отчет и защитить работу.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Рекурсия</b>
+— это такой способ организации
+вспомогательного алгоритма (подпрограммы),
+при котором эта подпрограмма (процедура
+или функция) в ходе выполнения ее
+операторов обращается сама к себе.
+Вообще, рекурсивным называется любой
+объект, который частично определяется
+через себя.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+рекурсивном определении должно
+присутствовать ограничение, <b>граничное
+условие</b>, при выходе на которое
+дальнейшая инициация рекурсивных
+обращений прекращается.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Примеры
+рекурсивных определений</b>.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Пример
+1. Классический пример, без которого не
+обходятся ни в одном рассказе о рекурсии,
+— определение факториала. С одной
+стороны, факториал определяется так:
+n!=1*2*3*...*n. С другой стороны,</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Факториал,
+рекурсивное определение</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Граничным
+условием в данном случае является n&lt;=1.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+factorial(int n){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(n&lt;=1)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+n;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+n*factorial(n-1);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Пример
+2. Определим функцию K(n), которая возвращает
+количество цифр в заданном натуральном
+числе n:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Количество
+цифр в натуральном числе, рекурсивное
+определение</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+numbers(const int &amp; n){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(n&lt;=0)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+0;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+numbers(n/10)+1;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Обращение
+к рекурсивной подпрограмме ничем не
+отличается от вызова любой другой
+подпрограммы. При этом при каждом новом
+рекурсивном обращении в памяти создаётся
+новая копия подпрограммы со всеми
+локальными переменными. Такие копии
+будут порождаться до выхода на граничное
+условие. Очевидно, в случае отсутствия
+граничного условия, неограниченный
+рост числа таких копий приведёт к
+аварийному завершению программы за
+счёт переполнения стека.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Порождение
+все новых копий рекурсивной подпрограммы
+до выхода на граничное условие называется
+<b>рекурсивным спуском</b>. Максимальное
+количество копий рекурсивной подпрограммы,
+которое одновременно может находиться
+в памяти компьютера, называется <b>глубиной
+рекурсии</b>. Завершение работы рекурсивных
+подпрограмм, вплоть до самой первой,
+инициировавшей рекурсивные вызовы,
+называется <b>рекурсивным подъёмом</b>.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Выполнение
+действий в рекурсивной подпрограмме
+может быть организовано одним из
+вариантов:</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Рекурсивный
+	подъём:</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">P;</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">операторы;</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Рекурсивный
+	спуск:</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">операторы;</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">P;</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+	<li/>
+<p style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	Рекурсивный спуск, и рекурсивный подъём:</p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">операторы;</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">P;</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">операторы;</span></font></font></font></p>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Здесь
+P — рекурсивная подпрограмма. Как видно
+из примера, действия могут выполняться
+либо на одном из этапов рекурсивного
+обращения, либо на обоих сразу. Способ
+организации действий диктуется логикой
+разрабатываемого алгоритма.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Подводя
+итог, заметим, что использование рекурсии
+является красивым приёмом программирования.
+В то же время в большинстве практических
+задач этот приём неэффективен с точки
+зрения расходования таких ресурсов
+ЭВМ, как память и время исполнения
+программы. Использование рекурсии
+увеличивает время исполнения программы
+и зачастую требует значительного объёма
+памяти для хранения копий подпрограммы
+на рекурсивном спуске. Поэтому на
+практике разумно заменять рекурсивные
+алгоритмы на итеративные.</span></font></font></font></p>
+<ol start="0">
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-before: always; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><b><span style="background: transparent">Контрольные
+	вопросы</span></b></font></font></font></p>
+</ol>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Какое
+	определение называется рекурсивным?
+	Приведите собственные примеры рекурсивных
+	определений.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Какой
+	вспомогательный алгоритм (подпрограмма)
+	называются рекурсивными? Приведите
+	собственные примеры содержательных
+	задач, где для решения может быть
+	использован рекурсивный вспомогательный
+	алгоритм.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Что
+	такое граничное условие, и каково его
+	назначение в рекурсивной подпрограмме?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Что
+	такое рекурсивный спуск?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Что
+	такое рекурсивный подъём?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Что
+	такое глубина рекурсии? Чему равна
+	глубина рекурсии в приведённых выше
+	примерах?</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">На
+	каком этапе выполнения рекурсивной
+	подпрограммы могут выполняться её
+	операторы?</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Содержание
+отчета:</b> Название и цель работы, листинг
+задания для самостоятельной работы,
+ответы на контрольные вопросы.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Задание
+для самостоятельной работы</b> </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+1 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию S(n), вычисляющую сумму цифр
+	заданного натурального числа.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вычислить
+	сумму элементов линейного массива
+	(Используя рекурсию).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+2</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию S(n), вычисляющую произведение
+	цифр заданного натурального числа.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определить
+	функцию поиска элемента в строке
+	(Используя рекурсию).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+3 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию S(n), вычисляющую длину заданного
+	натурального числа.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определить
+	функцию поиска элемента в массиве
+	(Используя рекурсию).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+4 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию S(n,numeral), вычисляющую позицию
+	выбранной цифры(numeral) заданного
+	натурального числа (n).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вычислить
+	сумму четных элементов линейного
+	массива (Используя рекурсию).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+5 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию S(n,numeral), вычисляющую количество
+	повторений выбранной цифры(numeral)
+	заданного натурального числа (n).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вычислить
+	сумму нечетных элементов линейного
+	массива (Используя рекурсию).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+6 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию S(n,numeral), определяющую на какой
+	позиции находиться цифра(numeral) (четная
+	или не четная позиция) заданного
+	натурального числа (n).</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вычислить
+	произведение нечетных элементов
+	линейного массива (Используя рекурсию).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+7 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию S(n,<span lang="en-US">i</span>), вычисляющую
+	факториал <span lang="en-US">i</span> цифры заданного
+	натурального числа <span lang="en-US">n</span>.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вычислить
+	произведение четных элементов линейного
+	массива (Используя рекурсию).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+8 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию S(n,<span lang="en-US">i</span>), вычисляющую
+	корень квадратный <span lang="en-US">i</span> цифры
+	заданного натурального числа <span lang="en-US">n</span>.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию определяющую НОК(наибольшие
+	общее кратное) для линейного массива.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+9 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию S(n,<span lang="en-US">i</span>), вычисляющую
+	квадрат <span lang="en-US">i</span> цифры заданного
+	натурального числа <span lang="en-US">n</span>.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию определяющую НОД(наименьший
+	общий делитель ) для линейного массива.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+10 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определите
+	функцию S(n), вычисляющую сумму цифр
+	заданного натурального числа.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Определить
+	функцию поиска элемента в массиве
+	(Используя рекурсию).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="left"><font size="4" style="font-size: 16pt"><b>Все
+задачи должны решаться через рекурсию!</b></font></p>
+</body>
+</html>

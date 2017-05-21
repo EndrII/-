@@ -1,0 +1,590 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2017-05-21T23:09:18.439077257"/>
+	<meta name="created" content="2016-06-01T22:06:50.435480249">
+	<meta name="changed" content="2016-08-24T13:39:36.589917909">
+	<style type="text/css">
+		@page { margin-left: 1.18in; margin-right: 0.39in; margin-top: 0.79in; margin-bottom: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		td p { margin-bottom: 0in; line-height: 120% }
+		h2.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt }
+		h2.cjk { font-family: "Droid Sans Fallback"; font-size: 16pt }
+		h2.ctl { font-family: "FreeSans"; font-size: 16pt }
+		h3.western { font-family: "Liberation Sans", sans-serif }
+		h3.cjk { font-family: "Droid Sans Fallback" }
+		h3.ctl { font-family: "FreeSans" }
+		pre.cjk { font-family: "Courier New", monospace }
+		th p { margin-bottom: 0in; line-height: 120% }
+		a:link { so-language: zxx }
+	</style>
+</head>
+<body lang="ru-RU" dir="ltr">
+<ol>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-after: avoid">
+	<font color="#000000"><span style="background: transparent"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><b>Занятие №<span lang="en-US">1</span><span lang="en-US">2</span></span></b></font></font></font></p>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; font-variant: normal; letter-spacing: -0.8pt; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><span style="background: transparent">Контейнеры
+	с++/STL</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Цель</b>:
+Научить создавать и использовать
+контейнеры <span style="font-variant: normal"><span style="letter-spacing: -0.8pt"><span style="font-style: normal"><span style="font-weight: normal">с++/
+STL, ознакомить с базовыми методами
+контейнеров</span></span></span></span>.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Ход
+работы</b>: изучить описание к работе,
+выполнить практическую часть, оформить
+отчет и защитить работу.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><i>Библиотека
+стандартных шаблонов (STL) </i>(англ. Standard
+Template Library) — набор согласованных
+обобщённых алгоритмов, контейнеров,
+средств доступа к их содержимому и
+различных вспомогательных функций в
+C++.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Библиотека
+стандартных шаблонов до включения в
+стандарт C++ была сторонней разработкой,
+вначале — фирмы HP, а затем SGI. Стандарт
+языка не называет её «STL», так как эта
+библиотека стала неотъемлемой частью
+языка, однако многие люди до сих пор
+используют это название, чтобы отличать
+её от остальной части стандартной
+библиотеки (потоки ввода-вывода
+(iostream), подраздел Си и др.).</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Проект
+под названием STLPort, основанный на SGI STL,
+осуществляет постоянное обновление
+STL, iostream и строковых классов. Некоторые
+другие проекты также занимаются
+разработкой частных применений
+стандартной библиотеки для различных
+конструкторских задач. Каждый производитель
+компиляторов C++ обязательно поставляет
+какую-либо реализацию этой библиотеки,
+так как она является очень важной частью
+стандарта и широко используется.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Архитектура
+STL была разработана Александром Степановым
+и Менг Ли.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+библиотеке выделяют пять основных
+компонентов:</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Контейнер
+	(англ. container) — хранение набора объектов
+	в памяти.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Итератор
+	(англ. iterator) — обеспечение средств
+	доступа к содержимому контейнера.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Алгоритм
+	(англ. algorithm) — определение вычислительной
+	процедуры.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Адаптер
+	(англ. adaptor) — адаптация компонентов
+	для обеспечения различного интерфейса.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Функциональный
+	объект (англ. functor) — сокрытие функции
+	в объекте для использования другими
+	компонентами.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Разделение
+позволяет уменьшить количество
+компонентов. Например, вместо написания
+отдельной функции поиска элемента для
+каждого типа контейнера обеспечивается
+единственная версия, которая работает
+с каждым из них, пока соблюдаются основные
+требования.</span></font></font></font></p>
+<h2 class="western">Описание</h2>
+<h3 class="western">Последовательные контейнеры</h3>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>vector</b>
+C-подобный динамический массив
+произвольного доступа с автоматическим
+изменением размера при добавлении/удалении
+элемента. Доступ по индексу за
+{\displaystyle O(1)} O(1). Добавление-удаление
+элемента в конец vector занимает
+амортизированное {\displaystyle O(1)} O(1) время,
+та же операция в начале или середине
+vector — {\displaystyle O(n)} O(n). Стандартная быстрая
+сортировка за {\displaystyle O(n\log(n))} {\displaystyle
+O(n\log(n))}. Поиск элемента перебором занимает
+{\displaystyle O(n)} O(n). Существует специализация
+шаблона vector для типа bool, которая требует
+меньше памяти за счёт хранения элементов
+в виде битов, однако она не поддерживает
+всех возможностей работы с итераторами.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>list</b>
+Двусвязный список, элементы которого
+хранятся в произвольных кусках памяти,
+в отличие от контейнера vector, где элементы
+хранятся в непрерывной области памяти.
+Поиск перебором медленнее, чем у вектора
+из-за большего времени доступа к элементу.
+Доступ по индексу за {\displaystyle O(n)} O(n). В
+любом месте контейнера вставка и удаление
+производятся очень быстро — за
+{\displaystyle O(1)} O(1).</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>deque</b>
+Двухсторонняя очередь. Контейнер похож
+на vector, но с возможностью быстрой вставки
+и удаления элементов на обоих концах
+за {\displaystyle O(1)} O(1). Реализован в виде
+двусвязанного списка линейных массивов.
+С другой стороны, в отличие от vector,
+двухсторонняя очередь не гарантирует
+расположение всех своих элементов в
+непрерывном участке памяти, что делает
+невозможным безопасное использование
+арифметики указателей для доступа к
+элементам контейнера.</span></font></font></font></p>
+<h3 class="western">Ассоциативные контейнеры</h3>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>set</b>
+Упорядоченное множество уникальных
+элементов. При вставке/удалении элементов
+множества итераторы, указывающие на
+элементы этого множества, не становятся
+недействительными. Обеспечивает
+стандартные операции над множествами
+типа объединения, пересечения, вычитания.
+Тип элементов множества должен
+реализовывать оператор сравнения
+operator&lt; или требуется предоставить
+функцию-компаратор. Реализован на основе
+самобалансирующего дерева двоичного
+поиска.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>multiset</b>
+То же что и set, но позволяет хранить
+повторяющиеся элементы.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>map</b>
+Упорядоченный ассоциативный массив
+пар элементов, состоящих из ключей и
+соответствующих им значений. Ключи
+должны быть уникальны. Порядок следования
+элементов определяется ключами. При
+этом тип ключа должен реализовывать
+оператор сравнения operator&lt;, либо требуется
+предоставить функцию-компаратор.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>multimap</b>
+То же что и map, но позволяет хранить
+несколько одинаковых ключей.</span></font></font></font></p>
+<h3 class="western">Контейнеры-адаптеры</h3>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>stack</b>
+Стек — контейнер, в котором добавление
+и удаление элементов осуществляется с
+одного конца.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>queue</b>
+Очередь — контейнер, с одного конца
+которого можно добавлять элементы, а с
+другого — вынимать.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>priority_queue</b>
+Очередь с приоритетом, организованная
+так, что самый большой элемент всегда
+стоит на первом месте.</span></font></font></font></p>
+<h3 class="western">Псевдоконтейнеры</h3>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>bitset</b>
+Служит для хранения битовых масок. Похож
+на vector&lt;bool&gt; фиксированного размера.
+Размер фиксируется тогда, когда
+объявляется объект bitset. Итераторов в
+bitset нет. Оптимизирован по размеру памяти.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>basic_string</b>
+Контейнер, предназначенный для хранения
+и обработки строк. Хранит в памяти
+элементы подряд единым блоком, что
+позволяет организовать быстрый доступ
+ко всей последовательности. Элементы
+должны быть POD'ами. Определена конкатенация
+с помощью +.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>valarray</b>
+Шаблон служит для хранения числовых
+массивов и оптимизирован для достижения
+повышенной вычислительной производительности.
+В некоторой степени похож на vector, но в
+нём отсутствует большинство стандартных
+для контейнеров операций. Определены
+операции над двумя valarray и над valarray и
+скаляром (поэлементные). Эти операции
+возможно эффективно реализовать как
+на векторных процессорах, так и на
+скалярных процессорах с блоками SIMD.</span></font></font></font></p>
+<h2 class="western">Итераторы</h2>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+библиотеке STL для доступа к элементам
+в качестве посредника используется
+обобщённая абстракция, именуемая&nbsp;итератором.
+Каждый контейнер поддерживает «свой»
+вид итератора, который представляет
+собой «модернизированный»&nbsp;интеллектуальный
+указатель, «знающий» как получить доступ
+к элементам конкретного контейнера.
+Стандарт C++ определяет пять категорий
+итераторов, описанных в следующей
+таблице:</span></font></font></font></p>
+<table width="643" cellpadding="4" cellspacing="0">
+	<col width="134">
+	<col width="239">
+	<col width="243">
+	<tr>
+		<th width="134" bgcolor="#f2f2f2" style="border-top: 1.00pt solid #aaaaaa; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p align="center">Категория</p>
+		</th>
+		<th width="239" bgcolor="#f2f2f2" style="border-top: 1.00pt solid #aaaaaa; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0.04in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p align="center">Поддерживаемые операции</p>
+		</th>
+		<th width="243" bgcolor="#f2f2f2" style="border: 1.00pt solid #aaaaaa; padding: 0.04in">
+			<p align="center">Примечание</p>
+		</th>
+	</tr>
+	<tr>
+		<td width="134" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p>Входные</p>
+		</td>
+		<td width="239" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p>operator++, operator*, operator-&gt;, конструктор
+			копии, operator=, operator==, operator!=</p>
+		</td>
+		<td width="243" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: 1.00pt solid #aaaaaa; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<p>Обеспечивают доступ для чтения в
+			одном направлении. Позволяют выполнить
+			присваивание или копирование с помощью
+			оператора присваивания и конструктора
+			копии.</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="134" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p>Выходные</p>
+		</td>
+		<td width="239" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p>operator++, operator*, конструктор копии</p>
+		</td>
+		<td width="243" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: 1.00pt solid #aaaaaa; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<p>Обеспечивают доступ для записи в
+			одном направлении. Их нельзя сравнивать
+			на равенство.</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="134" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p>Однонаправленные</p>
+		</td>
+		<td width="239" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p>operator++, operator*, operator-&gt;, конструктор
+			копии, конструктор по умолчанию,
+			operator=, operator==, operator!=</p>
+		</td>
+		<td width="243" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: 1.00pt solid #aaaaaa; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<p>Обеспечивают доступ для чтения и
+			записи в одном направлении. Позволяют
+			выполнить присваивание или копирование
+			с помощью оператора присваиваивания
+			и конструктора копии. Их можно сравнивать
+			на равенство.</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="134" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p>Двунаправленные</p>
+		</td>
+		<td width="239" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p>operator++, operator--, operator*, operator-&gt;, конструктор
+			копии, конструктор по умолчанию,
+			operator=, operator==, operator!=</p>
+		</td>
+		<td width="243" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: 1.00pt solid #aaaaaa; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<p>Поддерживают все функции, описанные
+			для однонаправленных итераторов (см.
+			выше). Кроме того, они позволяют
+			переходить к предыдущему элементу.</p>
+		</td>
+	</tr>
+	<tr>
+		<td width="134" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p>Произвольного доступа</p>
+		</td>
+		<td width="239" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: none; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0in">
+			<p>operator++, operator--, operator*, operator-&gt;, конструктор
+			копии, конструктор по умолчанию,
+			operator=, operator==, operator!=, operator+, operator-,
+			operator+=, operator-=, operator&lt;, operator&gt;, operator&lt;=,
+			operator&gt;=, operator[]</p>
+		</td>
+		<td width="243" style="border-top: none; border-bottom: 1.00pt solid #aaaaaa; border-left: 1.00pt solid #aaaaaa; border-right: 1.00pt solid #aaaaaa; padding-top: 0in; padding-bottom: 0.04in; padding-left: 0.04in; padding-right: 0.04in">
+			<p>Эквивалентны обычным указателям:
+			поддерживают арифметику указателей,
+			синтаксис индексации массивов и все
+			формы сравнения.</p>
+		</td>
+	</tr>
+</table>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Контрольные
+вопросы</b>:</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «<i>STL</i>».</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Опишите
+	Архитектуру STL.</span></font></font></font></p>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Дать
+	определение «Итератор».</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Содержание
+отчета:</b> Название и цель работы, листинг
+задания для самостоятельной работы,
+ответы на контрольные вопросы.</span></font></font></font></p>
+<ol start="0">
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-before: always; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><b><span style="background: transparent">Задание
+	для самостоятельной работы </span></b></font></font></font>
+	</p>
+</ol>
+<p style="margin-bottom: 0in; font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%">
+<font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt">Будем
+справедливы: сессия ставит задачи не
+только студентам, но и преподавателям.
+Любой преподаватель обучает немалое
+количество студентов, а ведь каждого
+надо еще и проверить. Поэтому один из
+преподавателей решил принимать экзамен
+по истории по такой упрощённой процедуре:
+студент записывает все известные ему
+«исторические» даты (достаточно, чтобы
+он написал только года, но, конечно, мог
+объяснить, чем замечательна та или иная
+дата). Преподаватель же держит перед
+глазами список дат, которые студент
+должен знать. Для оценки знаний студента
+преподаватель подсчитывает количество
+чисел в списке студента, которые также
+есть в списке преподавателя. В зависимости
+от полученного числа и выставляется
+итоговая оценка.</font></font></font></p>
+<p align="justify" style="margin-bottom: 0.1in; font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; line-height: 100%; orphans: 2; widows: 2">
+<font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt">Вы
+должны оказать посильную помощь в
+автоматизации этого процесса, разработав
+программу для подсчёта количества
+совпадений в списках студента и
+преподавателя.</font></font></font></p>
+<h3 class="western" style="margin-top: 0.15in; margin-bottom: 0.04in; font-variant: normal; letter-spacing: normal; font-style: normal; orphans: 2; widows: 2">
+<font color="#000000"><font face="Times New Roman">Исходные
+данные</font></font></h3>
+<p align="justify" style="margin-bottom: 0.1in; font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; orphans: 2; widows: 2">
+<font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt">В
+первой строке содержится число&nbsp;<i>N</i>&nbsp;—
+количество записей в списке преподавателя.
+1 ≤&nbsp;<i>N</i>&nbsp;≤ 15000. Затем идет&nbsp;<i>N</i>строк,
+содержащих список преподавателя, по
+одной дате в строке. Записаны только
+года. Каждый год — целое число в пределах
+от 1 до 109. Даты в этом списке отсортированы
+по неубыванию. В следующей после списка
+строке содержится число&nbsp;<i>M</i>&nbsp;—
+количество записей в списке студента,
+1 ≤&nbsp;<i>M</i>&nbsp;≤ 106. Затем также&nbsp;<i>M</i>&nbsp;строк
+с датами (записаны только года, каждый
+год — целое число в пределах от 1 до
+109). Этот список не отсортирован. В списке
+как студента, так и преподавателя даты
+могут повторяться.</font></font></font></p>
+<h3 class="western" style="margin-top: 0.15in; margin-bottom: 0.04in; font-variant: normal; letter-spacing: normal; font-style: normal; orphans: 2; widows: 2">
+<font color="#000000"><font face="Times New Roman">Результат</font></font></h3>
+<p align="justify" style="margin-bottom: 0.1in; font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; orphans: 2; widows: 2">
+<font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt">Вы
+должны вывести одно число — количество
+чисел во втором списке, которые также
+содержатся в первом.</font></font></font></p>
+<h3 class="western" style="margin-top: 0.15in; margin-bottom: 0.04in; font-variant: normal; letter-spacing: normal; font-style: normal; font-weight: normal; orphans: 2; widows: 2">
+<font color="#000000"><font face="Times New Roman">Пример</font></font></h3>
+<table width="643" cellpadding="3" cellspacing="0">
+	<col width="313">
+	<col width="315">
+	<tr>
+		<th width="313" style="border: 1px solid #000000; padding: 0.03in">
+			<p><font color="#000000">исходные данные</font></p>
+		</th>
+		<th width="315" style="border: 1px solid #000000; padding: 0.03in">
+			<p><font color="#000000">результат</font></p>
+		</th>
+	</tr>
+	<tr>
+		<td width="313" style="border: 1px solid #000000; padding: 0.03in">
+			<pre class="western"><font face="monospace, monospace for firefox">2</font>
+<font face="monospace, monospace for firefox">1054</font>
+<font face="monospace, monospace for firefox">1492</font>
+<font face="monospace, monospace for firefox">4</font>
+<font face="monospace, monospace for firefox">1492</font>
+<font face="monospace, monospace for firefox">65536</font>
+<font face="monospace, monospace for firefox">1492</font>
+<font face="monospace, monospace for firefox">100</font></pre>
+		</td>
+		<td width="315" style="border: 1px solid #000000; padding: 0.03in">
+			<pre class="western"><font face="monospace, monospace for firefox">2</font></pre>
+		</td>
+	</tr>
+</table>
+<p><br/>
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+1 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Решить
+данную задачу используя контейнер set.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+2 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Решить
+данную задачу используя контейнер
+vector.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+3 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Решить
+данную задачу используя контейнер list.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+4 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Решить
+данную задачу используя контейнер
+stack.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+5 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Решить
+данную задачу используя контейнер
+queue.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+6 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Решить
+данную задачу используя контейнер
+deque.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+7 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Решить
+данную задачу используя контейнер map.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+8 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Решить
+данную задачу используя контейнер
+vector.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+9 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Решить
+данную задачу используя контейнер list.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+10 </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Решить
+данную задачу используя контейнер
+deque.</span></font></font></font></p>
+</body>
+</html>

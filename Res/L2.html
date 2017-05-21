@@ -1,0 +1,1730 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2017-05-21T23:06:37.263969632"/>
+	<meta name="created" content="00:00:00">
+	<meta name="changed" content="2017-05-20T00:06:17.428669811">
+	<style type="text/css">
+		h2.cjk { font-family: "Noto Sans CJK SC Regular" }
+		h2.ctl { font-family: "FreeSans" }
+		pre.cjk { font-family: "Courier New", monospace }
+		h3.cjk { font-family: "Noto Sans CJK SC Regular" }
+		h3.ctl { font-family: "FreeSans" }
+		code.cjk { font-family: "Courier New", monospace }
+	</style>
+</head>
+<body lang="ru-RU" dir="ltr">
+<ol>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; page-break-before: auto; page-break-after: avoid">
+	<font color="#000000"><span style="background: transparent"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><b>Занятие
+	№2 </span></b></font></font></font>
+	</p>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; font-variant: normal; letter-spacing: -0.8pt; font-style: normal; font-weight: normal; page-break-before: auto; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><span style="background: transparent">РАСШИРЕННЫЙ
+	СИНТАКСИС ЯЗЫКА С++ </span></font></font></font>
+	</p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 100%; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Цель</b><font face="Times New Roman, serif">:
+Изучить </font><span style="font-variant: normal"><span style="letter-spacing: -0.8pt"><span style="font-style: normal"><span style="font-weight: normal">расширенный</span></span></span></span><font face="Times New Roman, serif">
+синтаксис языка программирования С++ .</font></span></font></font></font></p>
+<h2 class="western"><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Функции
+в C++</font></font></h2>
+<p><a name="more"></a><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Очень
+часто в программировании необходимо
+выполнять одни и те же действия. Например,
+мы хотим выводить пользователю сообщения
+об ошибке в разных местах программы,
+если он ввел неверное значение. без
+функций это выглядело бы так: </font></font>
+</p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;iostream&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">using namespace std;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int main()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{    </font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string valid_pass = &quot;qwerty123&quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string user_pass;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Введите пароль: &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">getline(cin, user_pass);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">if (user_pass == valid_pass) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Доступ разрешен.&quot; &lt;&lt; endl;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">} else {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Неверный пароль!&quot; &lt;&lt; endl;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return 0;    </font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">А
+вот аналогичный пример с функцией:</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;iostream&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">using namespace std;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void check_pass (string password)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string valid_pass = &quot;qwerty123&quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">if (password == valid_pass) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Доступ разрешен.&quot; &lt;&lt; endl;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">} else {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Неверный пароль!&quot; &lt;&lt; endl;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int main()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{    </font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string user_pass;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Введите пароль: &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">getline (cin, user_pass);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">check_pass (user_pass);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return 0;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">По
+сути, после компиляции не будет никакой
+разницы для процессора, как для первого
+кода, так и для второго. Но ведь такую
+проверку пароля мы можем делать в нашей
+программе довольно много раз. И тогда
+получается копипаста и код становится
+нечитаемым. Функции — один из самых
+важных компонентов языка C++.</font></font></p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0in"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Любая
+	функция имеет тип, также, как и любая
+	переменная. </font></font>
+	</p>
+	<li/>
+<p style="margin-bottom: 0in"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Функция
+	может возвращать значение, тип которого
+	в большинстве случаев аналогично типу
+	самой функции. </font></font>
+	</p>
+	<li/>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Если
+	функция не возвращает никакого значения,
+	то она должна иметь тип </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void</font></font></strong>
+	<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">(такие
+	функции иногда называют процедурами)
+	</font></font>
+	</p>
+	<li/>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">При
+	объявлении функции, после ее типа должно
+	находиться имя функции и две круглые
+	скобки — открывающая и закрывающая,
+	внутри которых могут находиться один
+	или несколько аргументов функции,
+	которых также может не быть вообще. </font></font>
+	</p>
+	<li/>
+<p style="margin-bottom: 0in"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">после
+	списка аргументов функции ставится
+	открывающая фигурная скобка, после
+	которой находится само тело функции. </font></font>
+	</p>
+	<li/>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">В
+	конце тела функции обязательно ставится
+	закрывающая фигурная скобка. </font></font>
+	</p>
+</ul>
+<h2 class="western"><a name="_1"></a><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Пример
+построения функции</font></font></h2>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;iostream&gt;     </font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">using namespace std;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void function_name ()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Hello, world&quot; &lt;&lt; endl;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int main()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">function_name(); // Вызов функции</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return 0;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Перед
+вами тривиальная программа, </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Hello,
+world</font></font></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+только реализованная с использованием
+функций.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Если
+мы хотим вывести «Hello, world» где-то еще,
+нам просто нужно вызвать соответствующую
+функцию. В данном случае это делается
+так: </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">function_name();</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.
+Вызов функции имеет вид имени функции
+с последующими круглыми скобками. Эти
+скобки могут быть пустыми, если функция
+не имеет аргументов. Если же аргументы
+в самой функции есть, их необходимо
+указать в круглых скобках.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Также
+существует такое понятие, как параметры
+функции по умолчанию. Такие параметры
+можно не указывать при вызове функции,
+т.к. они примут значение по умолчанию,
+указанно после знака присваивания после
+данного параметра и списке всех параметров
+функции.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">В
+предыдущих примерах мы использовали
+функции типа </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+которые не возвращают никакого значения.
+Как многие уже догадались, оператор
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">используется
+для возвращения вычисляемого функцией
+значения.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Рассмотрим
+пример функции, возвращающей значение
+на примере проверки пароля.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;iostream&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">using namespace std;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string check_pass (string password)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string valid_pass = &quot;qwerty123&quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string error_message;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">if (password == valid_pass) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">error_message = &quot;Доступ разрешен.&quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">} else {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">error_message = &quot;Неверный пароль!&quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return error_message;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int main()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{    </font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string user_pass;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Введите пароль: &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">getline (cin, user_pass);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string error_msg = check_pass (user_pass);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; error_msg &lt;&lt; endl;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return 0;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">В
+данном случае функция </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">check_pass</font></font></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">имеет
+тип </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string</font></font></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+следовательно она будет возвращать
+только значение типа string, иными словами
+говоря строку. Давайте рассмотрим
+алгоритм работы этой программы.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Самой
+первой выполняется функция </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">main()</font></font></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+которая должна присутствовать в каждой
+программе. Теперь мы объявляем переменную
+</font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">user_pass</font></font></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">типа
+string, затем выводим пользователю сообщение
+«Введите пароль», который после ввода
+попадает в строку user_pass. А вот дальше
+начинает работать наша собственная
+функция </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">check_pass()</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">В
+качестве аргумента этой функции
+передается строка, введенная пользователем.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Аргумент
+функции — это, если сказать простым
+языком переменные или константы
+вызывающей функции, которые будет
+использовать вызываемая функция.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">При
+объявлении функций создается </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">формальный
+параметр</font></font></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+имя которого может отличаться от
+параметра, передаваемого при вызове
+этой функции. Но типы формальных
+параметров и передаваемых функии
+аргументов в большинстве случаев должны
+быть аналогичны.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">После
+того, как произошел вызов функции
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">check_pass()</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+начинает работать данная функция. Если
+функцию нигде не вызвать, то этот код
+будет проигнорирован программой. Итак,
+мы передали в качестве аргумента строку,
+которую ввел пользователь.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Теперь
+эта строка в полном распоряжении функции
+(хочу обратить Ваше внимание на то, что
+переменные и константы, объявленные в
+разных функциях независимы друг от
+друга, они даже могут иметь одинаковые
+имена. В следующих уроках я расскажу о
+том, что такое область видимости,
+локальные и глобальные переменные).</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Теперь
+мы проверяем, правильный ли пароль ввел
+пользователь или нет. если пользователь
+ввел правильный пароль, присваиваем
+переменной </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">error_message</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">соответствующее
+значение. если нет, то сообщение об
+ошибке.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">После
+этой проверки мы </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">возвращаем</font></font></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">переменную
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">error_message</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.
+На этом работа нашей функции закончена.
+А теперь, в функции main(), то значение,
+которое возвратила наша функция мы
+присваиваем переменной </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">error_msg</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">и
+выводим это значение (строку) на экран
+терминала.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Также,
+можно организовать повторный ввод
+пароля с помощью </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">рекурсии</font></font></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">(о
+ней мы еще поговорим). Если объяснять
+вкратце, рекурсия — это когда функция
+вызывает сама себя. Смотрите еще один
+пример:</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;iostream&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">using namespace std;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">bool password_is_valid (string password)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string valid_pass = &quot;qwerty123&quot;;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">if (valid_pass == password)</font></font></code>
+<code class="western">                </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return true;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">else</font></font></code>
+<code class="western">                </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return false;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void get_pass ()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">string user_pass;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Введите пароль: &quot;;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">getline(cin, user_pass);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">if (!password_is_valid(user_pass)) {</font></font></code>
+<code class="western">                </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Неверный пароль!&quot; &lt;&lt; endl;</font></font></code>
+<code class="western">                </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">get_pass (); // Здесь делаем рекурсию</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">} else {</font></font></code>
+<code class="western">                </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout &lt;&lt; &quot;Доступ разрешен.&quot; &lt;&lt; endl;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int main()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">get_pass ();</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return 0;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Функции
+очень сильно облегчают работу программисту
+и намного повышают читаемость и понятность
+кода, в том числе и для самого разработчика
+(не удивляйтесь этому, т. к. если вы
+откроете код, написанный вами полгода
+назад,не сразу поймете соль, поверьте
+на слово).</font></font></p>
+<h2 class="western"><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Классы
+С++</font></font></h2>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Весь
+реальный мир состоит из объектов. Города
+состоят из районов, в каждом районе есть
+свои названия улиц, на каждой улице
+находятся жилые дома, которые также
+состоят из объектов.</font></font></p>
+<p><a name="more1"></a><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Практически
+любой материальный предмет можно
+представить в виде совокупности объектов,
+из которых он состоит. Допустим, что нам
+нужно написать программу для учета
+успеваемости студентов. Можно представить
+группу студентов, как класс языка C++.
+Назовем его </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<p style="margin-bottom: 0in"><br/>
+
+</p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">class Students {</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Имя студента</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Фамилия</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Пять промежуточных оценок студента</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Итоговая оценка за семестр</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float average_ball;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">};</font></font></code></pre><h2 class="western">
+<a name="_11"></a><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Основные
+понятия</font></font></h2>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Классы
+в программировании состоят из свойств
+и методов. Свойства — это любые данные,
+которыми можно характеризовать объект
+класса. В нашем случае, объектом класса
+является студент, а его свойствами —
+имя, фамилия, оценки и средний балл.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">У
+каждого студента есть имя — </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">name</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">и
+фамилия </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">last_name</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.
+Также, у него есть промежуточные оценки
+за весь семестр. Эти оценки мы будем
+записывать в целочисленный массив из
+пяти элементов. После того, как все пять
+оценок будут проставлены, определим
+средний балл успеваемости студента за
+весь семестр — свойство </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">average_ball</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Методы
+— это функции, которые могут выполнять
+какие-либо действия над данными
+(свойствами) класса. Добавим в наш класс
+функцию </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">calculate_average_ball()</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+которая будет определять средний балл
+успеваемости ученика.</font></font></p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0in"><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Методы</font></font></strong>
+	<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">класса
+	— это его функции. </font></font>
+	</p>
+	<li/>
+<p><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Свойства</font></font></strong>
+	<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">класса
+	— его переменные. </font></font>
+	</p>
+</ul>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">class Students {</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Функция, считающая средний балл</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void calculate_average_ball()</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int sum = 0; // Сумма всех оценок</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">                </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">sum += scores[i];</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// считаем среднее арифметическое</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">average_ball = sum / 5.0;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Имя студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Фамилия</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Пять промежуточных оценок студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">private:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Итоговая оценка за семестр</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float average_ball;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">};</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Функция
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">calculate_average_ball()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">просто
+делит сумму всех промежуточных оценок
+на их количество.</font></font></p>
+<h2 class="western"><a name="public-private"></a><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Модификаторы
+доступа public и private</font></font></h2>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Все
+свойства и методы классов имеют права
+доступа. По умолчанию, все содержимое
+класса является доступным для чтения
+и записи только для него самого. Для
+того, чтобы разрешить доступ к данным
+класса извне, используют модификатор
+доступа </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.
+Все функции и переменные, которые
+находятся после модификатора </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+становятся доступными из всех частей
+программы.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Закрытые
+данные класса размещаются после
+модификатора доступа </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">private</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.
+Если отсутствует модификатор </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+то все функции и переменные, по умолчанию
+являются закрытыми (как в первом примере).</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Обычно,
+приватными делают все свойства класса,
+а публичными — его методы. Все действия
+с закрытыми свойствами класса реализуются
+через его методы. Рассмотрим следующий
+код.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">class Students {</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка среднего балла</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_average_ball(float ball)</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">average_ball = ball;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение среднего балла</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float get_average_ball()</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return average_ball;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">private:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float average_ball;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">};</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Мы
+не можем напрямую обращаться к закрытым
+данными класса. Работать с этими данными
+можно только посредством методов этого
+класса. В примере выше, мы используем
+функцию </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">get_average_ball()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">для
+получения средней оценки студента, и
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">set_average_ball()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">для
+выставления этой оценки.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Функция
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">set_average_ball()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">принимает
+средний балл в качестве параметра и
+присваивает его значение закрытой
+переменной </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">average_ball</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.
+Функция </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">get_average_ball()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">просто
+возвращает значение этой переменной.</font></font></p>
+<h2 class="western"><a name="_2"></a><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Программа
+учета успеваемости студентов</font></font></h2>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Создадим
+программу, которая будет заниматься
+учетом успеваемости студентов в группе.
+Создайте заголовочный файл </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">students.h</font></font></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+в котором будет находиться класс
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">/* students.h */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">class Students {</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка имени студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_name(std::string student_name)</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">name = student_name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение имени студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string get_name()</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка фамилии студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_last_name(std::string student_last_name)</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">last_name = student_last_name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение фамилии студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string get_last_name()</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return last_name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка промежуточных оценок</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_scores(int student_scores[])</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">                </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">scores[i] = student_scores[i];</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка среднего балла</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_average_ball(float ball)</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">average_ball = ball;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение среднего балла</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float get_average_ball()</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return average_ball;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">private:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Промежуточные оценки</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Средний балл</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float average_ball; </font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Имя</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Фамилия</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">};</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Мы
+добавили в наш класс новые методы, а
+также сделали приватными все его
+свойства. Функция </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">set_name()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">сохраняет
+имя студента в переменной </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">name</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+а </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">get_name()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">возвращает
+значение этой переменной. Принцип работы
+функций </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">set_last_name()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">и
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">get_last_name()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">аналогичен.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Функция
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">set_scores()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">принимает
+массив с промежуточными оценками и
+сохраняет их в приватную переменную
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int
+scores[5]</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Теперь
+создайте файл </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">main.cpp</font></font></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">со
+следующим содержимым.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">/* main.cpp */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;iostream&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &quot;students.h&quot;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int main()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Создание объекта класса Student</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students student;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Ввод имени с клавиатуры</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Name: &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">getline(std::cin, name);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Ввод фамилии</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Last name: &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">getline(std::cin, last_name);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сохранение имени и фамилии в объект класса Students</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student.set_name(name);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student.set_last_name(last_name);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Оценки</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сумма всех оценок</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int sum = 0;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Ввод промежуточных оценок </font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Score &quot; &lt;&lt; i+1 &lt;&lt; &quot;: &quot;;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cin &gt;&gt; scores[i];</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// суммирование</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">sum += scores[i];</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сохраняем промежуточные оценки в объект класса Student</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student.set_scores(scores);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Считаем средний балл</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float average_ball = sum / 5.0;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сохраняем средний балл в объект класса Students</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student.set_average_ball(average_ball);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Выводим данные по студенту</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Average ball for &quot; &lt;&lt; student.get_name() &lt;&lt; &quot; &quot;</font></font></code>
+<code class="western">         </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">&lt;&lt; student.get_last_name() &lt;&lt; &quot; is &quot;</font></font></code>
+<code class="western">         </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">&lt;&lt; student.get_average_ball() &lt;&lt; std::endl;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return 0;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">В
+самом начале программы создается объект
+класса </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.
+Дело в том, что сам класс является только
+описанием его объекта. Класс </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">является
+описанием любого из студентов, у которого
+есть имя, фамилия и возможность получения
+оценок.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Объект
+класса </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">характеризует
+конкретного студента. Если мы захотим
+выставить оценки всем ученикам в группе,
+то будем создавать новый объект для
+каждого из них. Использование классов
+очень хорошо подходит для описания
+объектов реального мира.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">После
+создания объекта </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+мы вводим с клавиатуры фамилию, имя и
+промежуточные оценки для конкретного
+ученика. Пускай это будет Вася Пупкин,
+у которого есть пять оценок за семестр
+— две тройки, две четверки и одна пятерка.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Введенные
+данные мы передаем </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">set</font></font></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">-функциям,
+которые присваивают их закрытым
+переменным класса. После того, как были
+введены промежуточные оценки, мы
+высчитываем средний балл на основе этих
+оценок, а затем сохраняем это значение
+в закрытом свойстве </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">average_ball</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+с помощью функции </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">set_average_ball()</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Скомпилируйте
+и запустите программу.</font></font></p>
+<h2 class="western"><a name="_3"></a><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Отделение
+данных от логики</font></font></h2>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Вынесем
+реализацию всех методов класса в
+отдельный файл </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">students.cpp</font></font></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">/* students.cpp */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &quot;students.h&quot;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка имени студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_name(std::string student_name)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::name = student_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение имени студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string Students::get_name()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return Students::name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка фамилии студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_last_name(std::string student_last_name)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::last_name = student_last_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение фамилии студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string Students::get_last_name()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return Students::last_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка промежуточных оценок</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_scores(int scores[])</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::scores[i] = scores[i];</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка среднего балла</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_average_ball(float ball)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::average_ball = ball;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение среднего балла</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float Students::get_average_ball()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return Students::average_ball;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">А
+в заголовочном файле </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">students.h</font></font></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">оставим
+только прототипы этих методов.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">/* students.h */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#pragma once /* Защита от двойного подключения заголовочного файла */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">class Students {</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка имени студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_name(std::string);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение имени студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string get_name();</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка фамилии студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_last_name(std::string);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение фамилии студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string get_last_name();</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка промежуточных оценок</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_scores(int []);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка среднего балла</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_average_ball(float);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение среднего балла</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float get_average_ball();</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">private:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Промежуточные оценки</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Средний балл</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float average_ball;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Имя</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Фамилия</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">};</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Такой
+подход называется абстракцией данных
+— одного из фундаментальных принципов
+объектно-ориентированного программирования.
+К примеру, если кто-то другой захочет
+использовать наш класс в своем коде,
+ему не обязательно знать, как именно
+высчитывается средний балл. Он просто
+будет использовать функцию
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">calculate_average_ball()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">из
+второго примера, не вникая в алгоритм
+ее работы.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Над
+крупными проектами обычно работает
+несколько программистов. Каждый из них
+занимается написанием определенной
+части продукта. В таких масштабах кода,
+одному человеку практически нереально
+запомнить, как работает каждая из
+внутренних функций проекта. В нашей
+программе, мы используем оператор
+потокового вывода </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">cout</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+не задумываясь о том, как он реализован
+на низком уровне. Кроме того, отделение
+данных от логики является хорошим тоном
+программирования.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">В
+начале обучения мы говорили о пространствах
+имен (namespaces). Каждый класс в C++ использует
+свое пространство имен. Это сделано для
+того, чтобы избежать конфликтов при
+именовании переменных и функций. В файле
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">students.cpp</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">мы
+используем оператор принадлежности </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">::</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">перед
+именем каждой функции. Это делается для
+того, чтобы указать компилятору, что
+эти функции принадлежат классу </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<h2 class="western"><a name="_4"></a><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Создание
+объекта через указатель</font></font></h2>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">При
+создании объекта, лучше не копировать
+память для него, а выделять ее в в куче
+с помощью указателя. И освобождать ее
+после того, как мы закончили работу с
+объектом. Реализуем это в нашей программе,
+немного изменив содержимое файла
+</font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">main.cpp</font></font></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">/* main.cpp */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;iostream&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &quot;students.h&quot;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int main()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Выделение памяти для объекта Students</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students *student = new Students;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Ввод имени с клавиатуры</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Name: &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">getline(std::cin, name);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Ввод фамилии</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Last name: &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">getline(std::cin, last_name);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сохранение имени и фамилии в объект класса Students</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student-&gt;set_name(name);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student-&gt;set_last_name(last_name);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Оценки</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сумма всех оценок</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int sum = 0;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Ввод промежуточных оценок </font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Score &quot; &lt;&lt; i+1 &lt;&lt; &quot;: &quot;;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cin &gt;&gt; scores[i];</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// суммирование</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">sum += scores[i];</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сохраняем промежуточные оценки в объект класса Student</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student-&gt;set_scores(scores);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Считаем средний балл</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float average_ball = sum / 5.0;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сохраняем средний балл в объект класса Students</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student-&gt;set_average_ball(average_ball);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Выводим данные по студенту</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Average ball for &quot; &lt;&lt; student-&gt;get_name() &lt;&lt; &quot; &quot;</font></font></code>
+<code class="western">         </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">&lt;&lt; student-&gt;get_last_name() &lt;&lt; &quot; is &quot;</font></font></code>
+<code class="western">         </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">&lt;&lt; student-&gt;get_average_ball() &lt;&lt; std::endl;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Удаление объекта student из памяти</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">delete student; </font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return 0;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">При
+создании статического объекта, для
+доступа к его методам и свойствам,
+используют операция прямого обращения
+— «</font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></code></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">»
+(символ точки). Если же память для объекта
+выделяется посредством указателя, то
+для доступа к его методам и свойствам
+используется оператор косвенного
+обращения — «</font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">-&gt;</font></font></code></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">».</font></font></p>
+<h2 class="western"><a name="_5"></a><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Конструктор
+и деструктор класса</font></font></h2>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Конструктор
+класса — это специальная функция,
+которая автоматически вызывается сразу
+после создания объекта этого класса.
+Он не имеет типа возвращаемого значения
+и должен называться также, как класс, в
+котором он находится. По умолчанию,
+заполним двойками массив с промежуточными
+оценками студента.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">class Students {</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Конструктор класса Students</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students(int default_score)</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">                </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">scores[i] = default_score;</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">private:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">};</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int main()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Передаем двойку в конструктор</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students *student = new Students(2);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return 0;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Мы
+можем исправить двойки, если ученик
+будет хорошо себя вести, и вовремя
+сдавать домашние задания. А на «нет» и
+суда нет :-)</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Деструктор
+класса вызывается при уничтожении
+объекта. Имя деструктора аналогично
+имени конструктора, только в начале
+ставится знак тильды </font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">~</font></font></code></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.
+Деструктор не имеет входных параметров.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;iostream&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">class Students {</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Деструктор</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">~Students()</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">            </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Memory has been cleaned. Good bye.&quot; &lt;&lt; std::endl;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">};</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int main()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students *student = new Students;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Уничтожение объекта</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">delete student;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return 0;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><h2 class="western">
+<font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Конструкторы
+и деструкторы классов в C++</font></font></h2>
+<p><a name="more2"></a><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">В
+этом уроке мы более детально познакомимся
+с </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">конструкторами</font></font></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">и
+</font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">деструкторами</font></font></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">класса,
+а также научимся работать с файлами в
+потоковом режиме, с помощью библиотеки
+</font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fstream</font></font></code></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.
+Продолжим написание программы учета
+оценок. </font></font>
+</p>
+<p style="margin-bottom: 0in"><br/>
+
+</p>
+<h2 class="western"><a name="students"></a><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Конструктор
+Students</font></font></h2>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Добавим
+в класс </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">конструктор,
+который будет принимать имя и фамилию
+ученика, и сохранять эти значения в
+соответствующих переменных класса.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Конструктор Students</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::Students(std::string name, std::string last_name)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::set_name(name);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::set_last_name(last_name);</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">При
+создании нового объекта, мы должны
+передать конструктору имя и фамилию
+студента. Иначе компиляция программы
+завершится с ошибкой.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name = &quot;Василий&quot;;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name = &quot;Пупкин&quot;;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Students *student = new Students(name, last_name);</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Теперь
+добавим прототип конструктора в файл
+</font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">students.h</font></font></code></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">/* students.h */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#pragma once /* Защита от двойного подключения заголовочного файла */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">class Students {</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Конструктор класса Students</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students(std::string, std::string);</font></font></code>
+
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка имени студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_name(std::string);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение имени студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string get_name();</font></font></code>
+
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка фамилии студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_last_name(std::string);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение фамилии студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string get_last_name();</font></font></code>
+
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка промежуточных оценок</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_scores(int []);</font></font></code>
+
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка среднего балла</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_average_ball(float);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение среднего балла</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float get_average_ball();</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">private:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Промежуточные оценки</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Средний балл</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float average_ball;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Имя</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Фамилия</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">};</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">В
+файле </font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">students.cpp</font></font></code></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">определим
+сам конструктор.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">/* students.cpp */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;fstream&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &quot;students.h&quot;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Конструктор Students</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::Students(std::string name, std::string last_name)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::set_name(name);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::set_last_name(last_name);</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка имени студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_name(std::string student_name)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::name = student_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение имени студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string Students::get_name()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return Students::name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка фамилии студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_last_name(std::string student_last_name)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::last_name = student_last_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение фамилии студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string Students::get_last_name()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return Students::last_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка промежуточных оценок</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_scores(int scores[])</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int sum = 0;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::scores[i] = scores[i];</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">sum += scores[i];</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка среднего балла</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_average_ball(float ball)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::average_ball = ball;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение среднего балла</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float Students::get_average_ball()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return Students::average_ball;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">В
+</font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">main()</font></font></code></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">мы
+принимаем от пользователя имя и фамилию
+ученика, и сохраняем их во временных
+локальных переменных. После этого
+создаем новый объект класса </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+передавая его конструктору эти переменные.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">/* main.cpp */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;iostream&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &quot;students.h&quot;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int main(int argc, char *argv[])</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Локальная переменная, хранящая имя ученика</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// И его фамилию</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Ввод имени</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Name: &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">getline(std::cin, name);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// И фамилии</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Last name: &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">getline(std::cin, last_name);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Передача параметров конструктору</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students *student = new Students(name, last_name);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Оценки</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сумма всех оценок</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int sum = 0;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Ввод промежуточных оценок </font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Score &quot; &lt;&lt; i+1 &lt;&lt; &quot;: &quot;;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cin &gt;&gt; scores[i];</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// суммирование</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">sum += scores[i];</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сохраняем промежуточные оценки в объект класса Student</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student-&gt;set_scores(scores);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Считаем средний балл</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float average_ball = sum / 5.0;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Сохраняем средний балл</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">student-&gt;set_average_ball(average_ball);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Выводим данные по студенту</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::cout &lt;&lt; &quot;Average ball for &quot; &lt;&lt; student-&gt;get_name() &lt;&lt; &quot; &quot;</font></font></code>
+<code class="western">         </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">&lt;&lt; student-&gt;get_last_name() &lt;&lt; &quot; is &quot;</font></font></code>
+<code class="western">         </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">&lt;&lt; student-&gt;get_average_ball() &lt;&lt; std::endl;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Удаление объекта student из памяти</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">delete student; </font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return 0;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><h2 class="western">
+<a name="_12"></a><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Сохранение
+оценок в файл</font></font></h2>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Чтобы
+после завершения работы с программой,
+все данные сохранялись, мы будем
+записывать их в текстовый файл.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Оценки
+каждого студента будут находится в
+отдельной строке. Имя и фамилии будут
+разделяться пробелами. После имени и
+фамилии ученика ставится еще один
+пробел, а затем перечисляются все его
+оценки.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Пример
+файла с оценками:</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Василий Пупкин 5 4 5 3 3</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Иван Сидоров 5 5 3 4 5</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">Андрей Иванов 5 3 3 3 3</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Для
+работы с файлами мы воспользуемся
+библиотекой </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fstream</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+которая подключается в заголовочном
+файле с таким же именем.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;fstream&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Запись данных о студенте в файл</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::save()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::ofstream fout(&quot;students.txt&quot;, std::ios::app);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fout &lt;&lt; Students::get_name() &lt;&lt; &quot; &quot; </font></font></code>
+<code class="western">         </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">&lt;&lt; Students::get_last_name() &lt;&lt; &quot; &quot;;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fout &lt;&lt; Students::scores[i] &lt;&lt; &quot; &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fout &lt;&lt; std::endl;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fout.close();</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Переменная
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fout</font></font></code>
+— <font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">это
+объект класса </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">ofstream</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+который находится внутри библиотеки
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fstream</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.
+Класс </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">ofstream</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">используется
+для записи каких-либо данных во внешний
+файл. Кстати, у него тоже есть конструктор.
+Он принимает в качестве параметров имя
+выходного файла и режим записи.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">В
+данном случае, мы используем режим
+добавления — </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::ios:app</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">(англ.
+append). После завершения работы с файлом,
+необходимо вызвать метод </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">close()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">для
+того, чтобы закрыть файловый дескриптор.</font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Чтобы
+сохранить оценки студента, мы будем
+вызывать только что созданный метод
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">save()</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students student = new Students(&quot;Василий&quot;, &quot;Пупкин&quot;);</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">student-&gt;save();</font></font></code></pre><h2 class="western">
+<a name="students_1"></a><font face="Times New Roman, serif"><font size="5" style="font-size: 20pt">Деструктор
+Students</font></font></h2>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Логично
+было бы сохранять все оценки после того,
+как работа со студентом закончена. Для
+этого создадим </font></font><strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">деструктор</font></font></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">класса
+</font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students</font></font></code><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">,
+который будет вызывать метод </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">save()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">перед
+уничтожением объекта.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Деструктор Students</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::~Students()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::save();</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Добавим
+прототипы деструктора и метода </font></font><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">save()</font></font></code>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">в
+</font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">students.h</font></font></code></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">/* students.h */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#pragma once /* Защита от двойного подключения заголовочного файла */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">class Students {</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">public:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Запись данных о студенте в файл</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void save();</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Деструктор класса Students</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">~Students();</font></font></code>
+
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Конструктор класса Students</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students(std::string, std::string);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка имени студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_name(std::string);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение имени студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string get_name();</font></font></code>
+
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка фамилии студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_last_name(std::string);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение фамилии студента</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string get_last_name();</font></font></code>
+
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка промежуточных оценок</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_scores(int []);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение массива с промежуточными оценками</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int *get_scores();</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение строки с промежуточными оценками</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string get_scores_str(char);</font></font></code>
+
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка среднего балла</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void set_average_ball(float);</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение среднего балла</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float get_average_ball();</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">private:</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Промежуточные оценки</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int scores[5];</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Средний балл</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float average_ball;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Имя</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string name;</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Фамилия</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string last_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">};</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">И
+определим эти функции в </font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">students.cpp</font></font></code></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<pre class="western"><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">/* students.cpp */</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;string&gt;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &lt;fstream&gt;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">#include &quot;students.h&quot;</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Деструктор Students</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::~Students()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::save();</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Запись данных о студенте в файл</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::save()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::ofstream fout(&quot;students.txt&quot;, std::ios::app);</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fout &lt;&lt; Students::get_name() &lt;&lt; &quot; &quot; </font></font></code>
+<code class="western">         </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">&lt;&lt; Students::get_last_name() &lt;&lt; &quot; &quot;;</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fout &lt;&lt; Students::scores[i] &lt;&lt; &quot; &quot;;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fout &lt;&lt; std::endl;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">fout.close();</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Конструктор Students</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::Students(std::string name, std::string last_name)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::set_name(name);</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::set_last_name(last_name);</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка имени студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_name(std::string student_name)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::name = student_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение имени студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string Students::get_name()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return Students::name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка фамилии студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_last_name(std::string student_last_name)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::last_name = student_last_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение фамилии студента</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">std::string Students::get_last_name()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return Students::last_name;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка промежуточных оценок</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_scores(int scores[])</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int sum = 0;</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">for (int i = 0; i &lt; 5; ++i) {</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::scores[i] = scores[i];</font></font></code>
+<code class="western">        </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">sum += scores[i];</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение массива с промежуточными оценками</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">int *Students::get_scores()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return Students::scores;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Установка среднего балла</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">void Students::set_average_ball(float ball)</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Students::average_ball = ball;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">}</font></font></code>
+
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">// Получение среднего балла</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">float Students::get_average_ball()</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">{</font></font></code>
+<code class="western">    </code><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">return Students::average_ball;</font></font></code>
+<code class="western"><font face="Times New Roman, serif"><font size="3" style="font-size: 12pt">}</font></font></code></pre><p>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Содержимое
+</font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">main.cpp</font></font></code></strong>
+<font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">останется
+прежним. Скомпилируйте и запустите
+программу. Перед тем, как приложение
+завершит свою работу, в директории с
+исполняемым файлом будет создан новый
+текстовый файл с оценками — </font></font><strong><code class="western"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">students.txt</font></font></code></strong><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">.</font></font></p>
+<p><br/>
+<br/>
+
+</p>
+<p><br/>
+<br/>
+
+</p>
+<h2 class="western">Наследование классов в C++</h2>
+<p><a name="more3"></a>Наследование позволяет
+избежать дублирования лишнего кода при
+написании классов. Пусть в&nbsp;базе данных
+ВУЗа должна храниться информация о&nbsp;всех
+студентах и&nbsp;преподавателях. Представлять
+все данные в&nbsp;одном классе не&nbsp;получится,
+поскольку для преподавателей нам
+понадобится хранить данные, которые
+для студента не&nbsp;применимы, и&nbsp;наоборот.
+</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0in">Создание базового
+	класса 
+	</p>
+	<li/>
+<p style="margin-bottom: 0in">Наследование
+	от&nbsp;базового класса</p>
+	<ul>
+		<li/>
+<p style="margin-bottom: 0in">Конструктор базового
+		класса 
+		</p>
+		<li/>
+<p style="margin-bottom: 0in">Создание объекта
+		класса student 
+		</p>
+	</ul>
+	<li/>
+<p style="margin-bottom: 0in">Создание
+	класса-наследника teacher</p>
+	<ul>
+		<li/>
+<p style="margin-bottom: 0in">Создание объекта
+		класса teacher 
+		</p>
+	</ul>
+	<li/>
+<p>Когда нужно использовать конструктор
+		</p>
+</ul>
+<h2 class="western"><a name="_13"></a>Создание базового
+класса</h2>
+<p>Для решения этой задачи создадим
+базовый класс <code class="western">human</code>, который
+будет описывать модель человека. В&nbsp;нем
+будут храниться имя, фамилия и&nbsp;отчество.</p>
+<p>Создайте файл <code class="western">human.h</code>:</p>
+<pre class="western"><code class="western">// human.h</code>
+<code class="western">#ifndef HUMAN_H_INCLUDED</code>
+<code class="western">#define HUMAN_H_INCLUDED</code>
+
+<code class="western">#include &lt;string&gt;</code>
+<code class="western">#include &lt;sstream&gt;</code>
+
+<code class="western">class human {</code>
+<code class="western">    </code><code class="western">public:</code>
+<code class="western">        </code><code class="western">// Конструктор класса human</code>
+<code class="western">        </code><code class="western">human(std::string last_name, std::string name, std::string second_name)</code>
+<code class="western">        </code><code class="western">{</code>
+<code class="western">            </code><code class="western">this-&gt;last_name = last_name;</code>
+<code class="western">            </code><code class="western">this-&gt;name = name;</code>
+<code class="western">            </code><code class="western">this-&gt;second_name = second_name;</code>
+<code class="western">        </code><code class="western">}</code>
+
+<code class="western">        </code><code class="western">// Получение ФИО человека</code>
+<code class="western">        </code><code class="western">std::string get_full_name()</code>
+<code class="western">        </code><code class="western">{</code>
+<code class="western">            </code><code class="western">std::ostringstream full_name;</code>
+<code class="western">            </code><code class="western">full_name &lt;&lt; this-&gt;last_name &lt;&lt; &quot; &quot;</code>
+<code class="western">                </code><code class="western">&lt;&lt; this-&gt;name &lt;&lt; &quot; &quot;</code>
+<code class="western">                </code><code class="western">&lt;&lt; this-&gt;second_name;</code>
+<code class="western">            </code><code class="western">return full_name.str();</code>
+<code class="western">        </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">private:</code>
+<code class="western">        </code><code class="western">std::string name; // имя</code>
+<code class="western">        </code><code class="western">std::string last_name; // фамилия</code>
+<code class="western">        </code><code class="western">std::string second_name; // отчество</code>
+<code class="western">};</code>
+
+<code class="western">#endif // HUMAN_H_INCLUDED</code></pre><h2 class="western">
+<a name="_21"></a>Наследование от&nbsp;базового
+класса</h2>
+<p>Теперь создайте новый класс <code class="western">student</code>,
+который будет наследником класса <code class="western">human</code>.
+Поместите его в&nbsp;файл <code class="western">student.h</code>.</p>
+<pre class="western"><code class="western">// student.h</code>
+<code class="western">#ifndef STUDENT_H_INCLUDED</code>
+<code class="western">#define STUDENT_H_INCLUDED</code>
+
+<code class="western">#include &quot;human.h&quot;</code>
+<code class="western">#include &lt;string&gt;</code>
+<code class="western">#include &lt;vector&gt;</code>
+
+<code class="western">class student : public human {</code>
+<code class="western">    </code><code class="western">public:</code>
+<code class="western">        </code><code class="western">// Конструктор класса Student</code>
+<code class="western">        </code><code class="western">student(</code>
+<code class="western">            </code><code class="western">std::string last_name,</code>
+<code class="western">            </code><code class="western">std::string name,</code>
+<code class="western">            </code><code class="western">std::string second_name,</code>
+<code class="western">            </code><code class="western">std::vector&lt;int&gt; scores</code>
+<code class="western">        </code><code class="western">) : human(</code>
+<code class="western">            </code><code class="western">last_name,</code>
+<code class="western">            </code><code class="western">name,</code>
+<code class="western">            </code><code class="western">second_name</code>
+<code class="western">        </code><code class="western">) {</code>
+<code class="western">            </code><code class="western">this-&gt;scores = scores;</code>
+<code class="western">        </code><code class="western">}</code>
+
+<code class="western">        </code><code class="western">// Получение среднего балла студента</code>
+<code class="western">        </code><code class="western">float get_average_score()</code>
+<code class="western">        </code><code class="western">{</code>
+<code class="western">            </code><code class="western">// Общее количество оценок</code>
+<code class="western">            </code><code class="western">unsigned int count_scores = this-&gt;scores.size();</code>
+<code class="western">            </code><code class="western">// Сумма всех оценок студента</code>
+<code class="western">            </code><code class="western">unsigned int sum_scores = 0;</code>
+<code class="western">            </code><code class="western">// Средний балл</code>
+<code class="western">            </code><code class="western">float average_score;</code>
+
+<code class="western">            </code><code class="western">for (unsigned int i = 0; i &lt; count_scores; ++i) {</code>
+<code class="western">                </code><code class="western">sum_scores += this-&gt;scores[i];</code>
+<code class="western">            </code><code class="western">}</code>
+
+<code class="western">            </code><code class="western">average_score = (float) sum_scores / (float) count_scores;</code>
+<code class="western">            </code><code class="western">return average_score;</code>
+<code class="western">        </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">private:</code>
+<code class="western">        </code><code class="western">// Оценки студента</code>
+<code class="western">        </code><code class="western">std::vector&lt;int&gt; scores;</code>
+<code class="western">};</code>
+<code class="western">#endif // STUDENT_H_INCLUDED</code></pre><p>
+Функция <code class="western">get_average_score</code>
+вычисляет среднее арифметическое всех
+оценок студента. Все публичные свойства
+и методы класса <code class="western">human</code> будут
+доступны в классе <code class="western">student</code>.</p>
+<h3 class="western"><a name="_31"></a>Конструктор базового
+класса</h3>
+<p>Для того, чтобы инициализировать
+конструктор родительского класса (в
+нашем случае — это сохранение имени,
+фамилии и отчества ученика), используется
+следующий синтаксис:</p>
+<pre class="western"><code class="western">// Конструктор класса Student</code>
+<code class="western">student(</code>
+<code class="western">    </code><code class="western">// аргументы конструктора текущего класса</code>
+<code class="western">) : human(</code>
+<code class="western">    </code><code class="western">// инициализация конструктора родительского класса</code>
+<code class="western">) {</code>
+<code class="western">    </code><code class="western">// инициализация конструктора текущего класса</code>
+<code class="western">}</code></pre><p>
+В конструктор класса <code class="western">human</code>
+мы передаем инициалы человека, которые
+сохраняются в экземпляре класса. Для
+класса <code class="western">students</code>, нам необходимо
+задать еще и список оценок студента.
+Поэтому конструктор <code class="western">students</code>
+принимает все аргументы конструктора
+базового класса, а также дополнительные
+аргументы для расширения функционала:</p>
+<pre class="western"><code class="western">// Конструктор класса Student</code>
+<code class="western">student(</code>
+<code class="western">    </code><code class="western">std::string last_name,</code>
+<code class="western">    </code><code class="western">std::string name,</code>
+<code class="western">    </code><code class="western">std::string second_name,</code>
+<code class="western">    </code><code class="western">std::vector&lt;int&gt; scores</code>
+<code class="western">) : human(</code>
+<code class="western">    </code><code class="western">last_name,</code>
+<code class="western">    </code><code class="western">name,</code>
+<code class="western">    </code><code class="western">second_name</code>
+<code class="western">) {</code>
+<code class="western">    </code><code class="western">this-&gt;scores = scores;</code>
+<code class="western">}</code></pre><p>
+Список оценок студента хранится в
+векторе.</p>
+<h3 class="western"><a name="student"></a>Создание объекта
+класса student</h3>
+<p>Реализуем пользовательский интерфейс
+для работы с классом <code class="western">student</code>.</p>
+<pre class="western"><code class="western">// main.cpp</code>
+
+<code class="western">#include &lt;iostream&gt;</code>
+<code class="western">#include &lt;vector&gt;</code>
+
+<code class="western">#include &quot;human.h&quot;</code>
+<code class="western">#include &quot;student.h&quot;</code>
+
+<code class="western">int main(int argc, char* argv[])</code>
+<code class="western">{</code>
+
+<code class="western">    </code><code class="western">// Оценки студента</code>
+<code class="western">    </code><code class="western">std::vector&lt;int&gt; scores;</code>
+
+<code class="western">    </code><code class="western">// Добавление оценок студента в вектор</code>
+<code class="western">    </code><code class="western">scores.push_back(5);</code>
+<code class="western">    </code><code class="western">scores.push_back(3);</code>
+<code class="western">    </code><code class="western">scores.push_back(2);</code>
+<code class="western">    </code><code class="western">scores.push_back(2);</code>
+<code class="western">    </code><code class="western">scores.push_back(5);</code>
+<code class="western">    </code><code class="western">scores.push_back(3);</code>
+<code class="western">    </code><code class="western">scores.push_back(3);</code>
+<code class="western">    </code><code class="western">scores.push_back(3);</code>
+<code class="western">    </code><code class="western">scores.push_back(3);</code>
+
+<code class="western">    </code><code class="western">// Создание объекта класса student</code>
+<code class="western">    </code><code class="western">student *stud = new student(&quot;Петров&quot;, &quot;Иван&quot;, &quot;Алексеевич&quot;, scores);</code>
+
+<code class="western">    </code><code class="western">// Вывод полного имени студента (используется унаследованный метод класса human)</code>
+<code class="western">    </code><code class="western">std::cout &lt;&lt; stud-&gt;get_full_name() &lt;&lt; std::endl;</code>
+<code class="western">    </code><code class="western">// Вывод среднего балла студента</code>
+<code class="western">    </code><code class="western">std::cout &lt;&lt; &quot;Средний балл: &quot; &lt;&lt; stud-&gt;get_average_score() &lt;&lt; std::endl;</code>
+
+<code class="western">    </code><code class="western">return 0;</code>
+<code class="western">}</code></pre><p>
+В этом примере мы написали программу,
+которая создает объект класса <code class="western">student</code>,
+сохраняя в нем его имя, фамилию, отчество
+и список оценок.</p>
+<p>После инициализации объекта, происходит
+вывод полного имени студента с помощью
+функции <code class="western">get_full_name</code>. Эта
+функция была унаследована от базового
+класса <code class="western">human</code>.</p>
+<p>Затем программа вычислияет средний
+балл студента и выводит его на экран.
+Этим занимается функция <code class="western">get_average_score</code>,
+которую мы описали внутри класса <code class="western">student</code>.
+</p>
+<p>Мы реализовали часть функционала для
+нашей базы данных института (я конечно
+утрирую, когда оперирую столь серьезными
+высказываниями про настоящую базу
+данных :)</p>
+<h2 class="western"><a name="-teacher"></a>Создание
+класса-наследника teacher</h2>
+<p>Нужно создать еще один класс, в котором
+будут храниться данные преподавателей.
+Дадим ему название — <code class="western">teacher</code>.
+Как вы уже поняли, мы не будем описывать
+все методы этого класса с нуля, а просто
+унаследуем его от класса <code class="western">human</code>.
+Тогда, не нужно будет реализовывать
+хранение имени, фамилии и отчества
+препода. Это уже есть в базовом классе
+<code class="western">human</code>.</p>
+<p>Создайте файл <code class="western">teacher.h</code>:</p>
+<pre class="western"><code class="western">// teacher.h</code>
+<code class="western">#ifndef TEACHER_H_INCLUDED</code>
+<code class="western">#define TEACHER_H_INCLUDED</code>
+
+<code class="western">#include &quot;human.h&quot;</code>
+<code class="western">#include &lt;string&gt;</code>
+
+<code class="western">class teacher : public human {</code>
+<code class="western">    </code><code class="western">// Конструктор класса teacher</code>
+<code class="western">    </code><code class="western">public:</code>
+<code class="western">        </code><code class="western">teacher(</code>
+<code class="western">            </code><code class="western">std::string last_name,</code>
+<code class="western">            </code><code class="western">std::string name,</code>
+<code class="western">            </code><code class="western">std::string second_name,</code>
+<code class="western">            </code><code class="western">// Количество учебных часов за семетр у преподавателя</code>
+<code class="western">            </code><code class="western">unsigned int work_time</code>
+<code class="western">        </code><code class="western">) : human(</code>
+<code class="western">            </code><code class="western">last_name,</code>
+<code class="western">            </code><code class="western">name,</code>
+<code class="western">            </code><code class="western">second_name</code>
+<code class="western">        </code><code class="western">) {</code>
+<code class="western">            </code><code class="western">this-&gt;work_time = work_time;</code>
+<code class="western">        </code><code class="western">}</code>
+
+<code class="western">        </code><code class="western">// Получение количества учебных часов</code>
+<code class="western">        </code><code class="western">unsigned int get_work_time()</code>
+<code class="western">        </code><code class="western">{</code>
+<code class="western">            </code><code class="western">return this-&gt;work_time;</code>
+<code class="western">        </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">private:</code>
+<code class="western">        </code><code class="western">// Учебные часы</code>
+<code class="western">        </code><code class="western">unsigned int work_time;</code>
+<code class="western">};</code>
+
+<code class="western">#endif // TEACHER_H_INCLUDED</code></pre><p>
+У класса <code class="western">teacher</code> появилось
+новое свойство — количество учебных
+часов, отведенное преподавателю на
+единицу времени (семестр). Весь остальной
+функционал наследуется от базового
+класса <code class="western">human</code>. Если бы мы
+писали все с нуля, то одинакового кода
+бы получилось в разы больше, и его
+поддержка усложнилась бы на порядок.</p>
+<h3 class="western"><a name="teacher"></a>Создание объекта
+класса teacher</h3>
+<p>Изменим содержимое файла <code class="western">main.cpp</code>,
+чтобы проверить работу класса <code class="western">teacher</code>.</p>
+<pre class="western"><code class="western">#include &lt;iostream&gt;</code>
+
+<code class="western">#include &quot;human.h&quot;</code>
+<code class="western">#include &quot;teacher.h&quot;</code>
+
+<code class="western">int main(int argc, char* argv[])</code>
+<code class="western">{</code>
+
+<code class="western">    </code><code class="western">// Количество учебных часов преподавателя</code>
+<code class="western">    </code><code class="western">unsigned int teacher_work_time = 40;</code>
+
+<code class="western">    </code><code class="western">teacher *tch = new teacher(&quot;Васильков&quot;, &quot;Петр&quot;, &quot;Сергеевич&quot;, teacher_work_time);</code>
+
+<code class="western">    </code><code class="western">std::cout &lt;&lt; tch-&gt;get_full_name() &lt;&lt; std::endl;</code>
+<code class="western">    </code><code class="western">std::cout &lt;&lt; &quot;Количество часов: &quot; &lt;&lt; tch-&gt;get_work_time() &lt;&lt; std::endl;</code>
+
+<code class="western">    </code><code class="western">return 0;</code>
+<code class="western">}</code></pre><p>
+Если сборка программы прошла без ошибок,
+то результат работы программы будет
+таким:</p>
+<p><br/>
+<br/>
+
+</p>
+<p>Можно таким же образом создать класс,
+в котором будут храниться данные
+обслуживающего персонала или руководящего
+состава. Наследование используют, когда
+у каждой группы объектов есть общие
+параметры, но для каждой из этих групп
+нужно хранить более кастомные данные.</p>
+<p>Также, мы можем создать класс, который
+будет описывыть студента заочной формы
+обучения. Его мы унаследовали бы от
+класса <code class="western">student</code>, добавив
+какие-либо дополнительные данные.</p>
+<p>В класс <code class="western">human</code> можно
+добавить еще больше свойств, которые
+будут описывать данные, имеющиеся у
+любого человека. Например, номер паспорта,
+дату рождения, прописку и место проживания.</p>
+<p>Подобный подход позволяет в разы
+уменьшить дублирование кода в реальных
+проектах, и упросить его поддержку.</p>
+<h2 class="western"><a name="_41"></a>Когда нужно
+использовать конструктор</h2>
+<p>Если у класса много свойств — их совсем
+не обязательно задавать в конструкторе.
+Для сохранения отдельных свойств класса
+используют set-функции. Например, для
+сохранения номера паспорта, можно
+создать публичный метод
+<code class="western">set_passport_number(std::string number)</code>,
+который будет принимать значение
+свойства и сохранять его в объекте,
+через переменную <code class="western">this</code>.</p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><b>Задание
+для самостоятельной работы.</b></font></font></p>
+<p><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt">Написать
+иерархию классов «Зоопарк». Где есть
+базовый класс <span lang="en-US">Animal</span> и минимум
+10 классов различных видов животных,
+каждый класс имеет как минимум по 3
+собственных метода плюс методы классов
+родителей. Продемонстрировать работу
+всех классов, Объекты классов должны
+взаимодействовать между собой. </font></font>
+</p>
+<p style="margin-bottom: 0in"><br/>
+
+</p>
+</body>
+</html>

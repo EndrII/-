@@ -1,0 +1,1076 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2017-05-21T23:08:55.998990538"/>
+	<style type="text/css">
+		@page { margin-left: 1.18in; margin-right: 0.39in; margin-top: 0.79in; margin-bottom: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		h1 { margin-bottom: 0.08in }
+		h1.western { font-family: "Liberation Sans", sans-serif; font-size: 18pt }
+		h1.cjk { font-family: "Droid Sans Fallback"; font-size: 18pt }
+		h1.ctl { font-family: "FreeSans"; font-size: 18pt }
+		pre.cjk { font-family: "Courier New", monospace }
+		a:link { so-language: zxx }
+		kbd.cjk { font-family: "NSimSun", monospace }
+	</style>
+</head>
+<body lang="ru-RU" dir="ltr">
+<ol>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><b><span style="background: transparent"><span lang="en-US">Занятие</span><span lang="en-US">
+	№</span><span lang="en-US">9</span></span></b></font></font></font></p>
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; font-variant: normal; letter-spacing: -0.8pt; font-style: normal; font-weight: normal; line-height: 100%; page-break-before: auto; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 16pt"><span style="background: transparent">Двоичные
+	деревья</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Цель</b>:
+научиться создавать <span style="font-variant: normal"><span style="letter-spacing: -0.8pt"><span style="font-style: normal"><span style="font-weight: normal">двоичные
+деревья</span></span></span></span> и управлять ими.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Ход
+работы</b>: изучить описание к работе,
+выполнить практическую часть, оформить
+отчет и защитить работу.</span></font></font></font></p>
+<h1 class="western" style="font-variant: normal; letter-spacing: normal; font-style: normal">
+<font color="#000000"><font face="Times New Roman">Двоичные
+деревья</font></font></h1>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Несмотря
+на то, что бывает много различных типов
+деревьев, двоичные деревья играют особую
+роль, так как в отсортированном состоянии
+позволяют очень быстро выполнять
+вставку, удаление и поиск. Каждый элемент
+двоичного дерева состоит из информационной
+части и указателей на левый и правый
+элементы. На рис. <span lang="en-US">1</span> показано
+небольшое двоичное дерево.</span></font></font></font></p>
+<center>
+	<table width="100%" cellpadding="2" cellspacing="0">
+		<col width="256*">
+		<tr>
+			<td width="100%" style="border: none; padding: 0in">
+				<pre class="western">                                 корень
+                               ↙
+                      +-------+
+                      |данные |
+                      +---+---+
+      левое           |   |   |           правое
+     поддерево        +---+---+          поддерево
+         ↘          ↙          ↘          ↙
+           +-------+             +-------+
+           |данные |             |данные |
+           +---+---+             +---+---+
+           |   |   |             | 0 |   |
+           +---+---+             +---+---+
+         ↙          ↘                     ↘
++-------+             +-------+             +-------+
+|данные |             |данные |             |данные |
++---+---+             +---+---+             +---+---+
+| 0 | 0 |             | 0 | 0 |             | 0 | 0 |
++---+---+             +---+---+             +---+---+
+      ↑                   ↑                   ↑
+      '----------------листья-----------------'</pre>
+			</td>
+		</tr>
+	</table>
+</center>
+<p align="center"><i>Рис. <span lang="en-US">1</span>. Пример
+двоичного дерева, высота которого равна
+3</i></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">При
+обсуждении деревьев применяется
+специальная терминология. Программисты
+не являются специалистами в области
+филологии, и поэтому терминология,
+применяемая в теории графов (а ведь
+деревья представляют собой частный
+случай графов!), является классическим
+примером неправильного употребления
+слов. Первый элемент дерева
+называется&nbsp;<i>корнем</i>&nbsp;(root). Каждый
+элемент данных называется&nbsp;<i>вершиной
+дерева</i>&nbsp;(node), а любой фрагмент дерева
+называется&nbsp;<i>поддеревом</i>&nbsp;(subtree).
+Вершина, к которой не присоединены
+поддеревья, называется&nbsp;<i>заключительным
+узлом</i>&nbsp;(terminal node)
+или&nbsp;<i>листом</i>&nbsp;(leaf).&nbsp;<i>Высота</i>&nbsp;(height)
+дерева равняется максимальному количеству
+уровней от корня до листа. При работе с
+деревьями можно допустить, что в памяти
+они существуют в том же виде, что и на
+бумаге. Но помните, что дерево — всего
+лишь способ логической организации
+данных в памяти, а память линейна.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+некотором смысле двоичное дерево
+является особым видом связанного списка.
+Элементы можно вставлять, удалять и
+извлекать в любом порядке. Кроме того,
+операция извлечения не является
+разрушающей. Несмотря на то, что деревья
+легко представить в воображении, в
+теории программирования с ними связан
+ряд сложных задач. В данном разделе
+деревья затрагиваются лишь поверхностно.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Большинство
+функций, работающих с деревьями,
+рекурсивны, поскольку дерево по своей
+сути является рекурсивной структурой
+данных. Другими словами, каждое поддерево,
+в свою очередь, является деревом. Поэтому
+разрабатываемые здесь функции будут
+рекурсивными. Существуют и не рекурсивные
+версии этих функций, но их код понять
+намного сложнее.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Способ
+упорядочивания дерева зависит от того,
+как к нему впоследствии будет осуществляться
+доступ. Процесс поочередного доступа
+к каждой вершине дерева называется&nbsp;<i>обходом
+(вершин) дерева</i>&nbsp;(tree traversal). Рассмотрим
+следующее дерево:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">d
+</span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><span style="background: transparent">↙ ↘</span></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">b
+f</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><span style="background: transparent">↙ ↘ ↙
+↘</span></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">a
+c e g</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Существует
+три порядка обхода дерева:&nbsp;<i>обход
+симметричным способом</i>, или&nbsp;<i>симметричный
+обход</i>&nbsp;(inorder),&nbsp;<i>обход в прямом
+порядке, прямой обход, упорядоченный
+обход, обход сверху</i>, или&nbsp;<i>обход в
+ширину</i>&nbsp;(preorder) и обход в&nbsp;<i>обратном
+порядке, обход в глубину, обратный обход,
+обход снизу</i>&nbsp;(postorder). При симметричном
+обходе обрабатывается сначала левое
+поддерево, затем корень, а затем правое
+поддерево. При прямом обходе обрабатывается
+сначала корень, затем левое поддерево,
+а потом правое. При обходе снизу сначала
+обрабатывается левое поддерево, затем
+правое и, наконец корень. Последовательность
+доступа при каждом методе обхода показана
+ниже:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Симметричный
+обход <b>a b c d e f g</b></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Прямой
+обход <b>d b a c f e g</b></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Обход
+снизу <b>a c b e g f d</b></span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Несмотря
+на то, что дерево не должно быть обязательно
+упорядоченным, в большинстве задач
+используются именно такие деревья.
+Конечно, структура упорядоченного
+дерева зависит от способа его обхода.
+В оставшейся части данной главы
+предполагается симметричный обход.
+Поэтому упорядоченным двоичным деревом
+будет считаться такое дерево, в котором
+левое поддерево содержит вершины,
+меньшие или равные корню, а правое
+содержит вершины, большие корня.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">Приведенная
+ниже функция&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">stree()</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="background: transparent">&nbsp;</span></span></font></font></font></span><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">создает
+упорядоченное двоичное дерево:</span></span></span></span></font></font></font></span></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree {</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+info;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *left;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *right;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">};</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *stree(</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *root,</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *r,</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+info)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!r)
+{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">r
+= (struct tree *) malloc(sizeof(struct tree));</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!r)
+{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">printf(&quot;Не
+хватает памяти\n&quot;);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">exit(0);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">r-&gt;left
+= NULL;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">r-&gt;right
+= NULL;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">r-&gt;info
+= info;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!root)
+return r; /* первый вход */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(info
+&lt; root-&gt;info) root-&gt;left = r;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else
+root-&gt;right = r;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+r;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(info
+&lt; r-&gt;info)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">stree(r,r-&gt;left,info);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">stree(r,r-&gt;right,info);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+root; </span></font></font></font>
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">Приведенный
+выше алгоритм просто следует по ссылкам
+дерева, переходя к левой или правой
+ветви очередной вершины на основании
+содержимого поля&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">info</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="background: transparent">&nbsp;</span></span></font></font></font></span><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">до
+достижения места вставки нового элемента.
+Чтобы использовать эту функцию, необходимо
+иметь глобальную переменную-указатель
+на корень дерева. Этот указатель
+изначально должен иметь значение нуль
+(</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">NULL</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">).
+При первом вызове функция&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">stree()</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="background: transparent">&nbsp;</span></span></font></font></font></span><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">возвращает
+указатель на корень дерева, который
+нужно присвоить глобальной переменной.
+При последующих вызовах функция
+продолжает возвращать указатель на
+корень. Допустим, что глобальная
+переменная, содержащая корень дерева,
+называется&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">rt</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">.
+Тогда функция&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">stree()</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="background: transparent">&nbsp;</span></span></font></font></font></span><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">вызывается
+следующим образом:</span></span></span></span></font></font></font></span></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">/*
+вызов функции street() */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">rt
+= street(rt, rt, info);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">Функция&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">stree()</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="background: transparent">&nbsp;</span></span></font></font></font></span><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">использует
+рекурсивный алгоритм, как и большинство
+процедур работы с деревьями. Точно такая
+же функция, основанная на итеративных
+методах, была бы в несколько раз длиннее.
+Функцию&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">stree()</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="background: transparent">&nbsp;</span></span></font></font></font></span><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">необходимо
+вызывать со следующими параметрами
+(слева направо): указатель на корень
+всего дерева, указатель на корень
+следующего поддерева, в котором
+осуществляется поиск, и сохраняемые
+данные. При первом вызове оба первых
+параметрах указывают на корень всего
+дерева. Для простоты в вершинах дерева
+хранятся одиночные символы. Тем не
+менее, вместо них можно использовать
+любой тип данных.</span></span></span></span></font></font></font></span></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">Чтобы
+обойти созданное функцией&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">stree()</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="background: transparent">&nbsp;</span></span></font></font></font></span><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">дерево
+в симметричном порядке и распечатать
+поле&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">info</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="background: transparent">&nbsp;</span></span></font></font></font></span><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">в
+каждой вершине, можно применить
+приведенную ниже функцию&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">inorder()</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">:</span></span></span></span></font></font></font></span></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+inorder(struct tree *root)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!root)
+return;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">inorder(root-&gt;left);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(root-&gt;info)
+printf(&quot;%c &quot;, root-&gt;info);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">inorder(root-&gt;right);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Данная
+рекурсивная функция завершает работу
+тогда, когда находит заключительный
+узел (нулевой указатель).</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+следующем листинге показаны функции,
+выполняющие обход дерева в ширину и в
+глубину.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+preorder(struct tree *root)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!root)
+return;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(root-&gt;info)
+printf(&quot;%c &quot;, root-&gt;info);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">preorder(root-&gt;left);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">preorder(root-&gt;right);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+postorder(struct tree *root)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!root)
+return;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">postorder(root-&gt;left);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">postorder(root-&gt;right);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(root-&gt;info)
+printf(&quot;%c &quot;, root-&gt;info);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">Теперь
+давайте рассмотрим короткую, но интересную
+программу, которая строит упорядоченное
+двоичное дерево, а затем, обходя его
+симметричным образом, отображает его
+на экране боком. Для отображения дерева
+требуется лишь слегка модифицировать
+функцию</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">inorder()</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">.
+Поскольку на экране дерево распечатывается
+боком, для корректного отображения
+правое поддерево необходимо печатать
+прежде левого. (Технически это
+противоположность симметричного
+обхода.) Новая функция называется&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">printtree()</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">,
+а ее код показан ниже:</span></span></span></span></font></font></font></span></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+print_tree(struct tree *r, int l)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+i;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(r
+== NULL) return;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">print_tree(r-&gt;right,
+l+1);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">for(i=0;
+iinfo);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">print_tree(r-&gt;left,
+l+1);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Далее
+следует текст всей программы печати
+дерева. Попробуйте вводить различные
+деревья, чтобы увидеть, как они строятся.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">/*
+Эта программа выводит на экран двоичное
+дерево. */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&lt;stdlib.h&gt;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">#include
+&lt;stdio.h&gt;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree {</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+info;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *left;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *right;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">};</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *root; /* начальная вершина дерева */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *stree(struct tree *root,</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *r, char info);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+print_tree(struct tree *root, int l);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+main(void)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+s[80];</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">root
+= NULL; /* инициализация корня дерева */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">do
+{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">printf(&quot;Введите
+букву: &quot;);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">gets(s);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">root
+= stree(root, root, *s);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}
+while(*s);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">print_tree(root,
+0);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+0;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *stree(</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *root,</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *r,</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">char
+info)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!r)
+{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">r
+= (struct tree *) malloc(sizeof(struct tree));</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!r)
+{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">printf(&quot;Не
+хватает памяти\n&quot;);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">exit(0);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">r-&gt;left
+= NULL;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">r-&gt;right
+= NULL;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">r-&gt;info
+= info;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!root)
+return r; /* первый вход */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(info
+&lt; root-&gt;info) root-&gt;left = r;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else
+root-&gt;right = r;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+r;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(info
+&lt; r-&gt;info)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">stree(r,
+r-&gt;left, info);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">stree(r,
+r-&gt;right, info);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+root;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">void
+print_tree(struct tree *r, int l)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">int
+i;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!r)
+return;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">print_tree(r-&gt;right,
+l+1);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">for(i=0;
+iinfo);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">print_tree(r-&gt;left,
+l+1);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">По
+существу, данная программа сортирует
+вводимую информацию. Метод сортировки
+является одной из разновидностей
+сортировки методом вставок, которая
+была рассмотрена в предыдущей главе. В
+среднем случае производительность
+может быть вполне хорошей.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Если
+вы запускали программу печати дерева,
+вы, вероятно, заметили, что некоторые
+деревья являются&nbsp;<i>сбалансированными</i>&nbsp;(balanced),
+т.е. каждое поддерево имеет примерно
+такую же высоту, как и остальные, а
+некоторые деревья очень далеки от этого
+состояния. Например, дерево&nbsp;<b>a</b>⇒<b>b</b>⇒<b>c</b>⇒<b>d</b>&nbsp;выглядит
+следующим образом:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">a</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><span style="background: transparent">↘</span></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">b</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><span style="background: transparent">↘</span></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">c</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><span style="background: transparent">↘</span></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">d</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">В
+этом дереве нет левых поддеревьев. Такое
+дерево называется&nbsp;<i>вырожденным</i>,
+поскольку фактически оно выродилось в
+линейный список. В общем случае, если
+при построении дерева вводимые данные
+являются случайными, то получаемое
+дерево оказывается близким к
+сбалансированному. Если же информация
+предварительно отсортирована, создается
+вырожденное дерево. (Поэтому иногда при
+каждой вставке дерево корректируют
+так, чтобы оно было сбалансированным,
+но этот процесс довольно сложен и выходит
+за рамки данной главы.)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">В
+двоичных деревьях легко реализовываются
+функции поиска. Приведенная ниже функция
+возвращает указатель на вершину дерева,
+в которой информация совпадает с ключом
+поиска, либо нуль (</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">NULL</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">),
+если такой вершины нет.</span></span></span></span></font></font></font></span></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *search_tree(struct tree *root, char key)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!root)
+return root; /* пустое дерево */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">while(root-&gt;info
+!= key) {</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(keyinfo)
+root = root-&gt;left;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else
+root = root-&gt;right;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(root
+== NULL) break;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+root;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">К
+сожалению, удалить вершину дерева не
+так просто, как отыскать. Удаляемая
+вершина может быть либо корнем, либо
+левой, либо правой вершиной. Помимо
+того, к вершине могут быть присоединены
+поддеревья (количество присоединенных
+поддеревьев может равняться 0, 1 или 2).
+Процесс переустановки указателей
+подсказывает рекурсивный алгоритм,
+приведенный ниже:</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *dtree(struct tree *root, char key)</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">struct
+tree *p,*p2;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(!root)
+return root; /* вершина не найдена */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(root-&gt;info
+== key) { /* удаление корня */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">/*
+это означает пустое дерево */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(root-&gt;left
+== root-&gt;right){</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">free(root);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+NULL;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">/*
+или если одно из поддеревьев пустое */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else
+if(root-&gt;left == NULL) {</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">p
+= root-&gt;right;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">free(root);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+p;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else
+if(root-&gt;right == NULL) {</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">p
+= root-&gt;left;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">free(root);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+p;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">/*
+или есть оба поддерева */</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else
+{</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">p2
+= root-&gt;right;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">p
+= root-&gt;right;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">while(p-&gt;left)
+p = p-&gt;left;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">p-&gt;left
+= root-&gt;left;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">free(root);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+p2;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">if(root-&gt;info
+&lt; key) root-&gt;right = dtree(root-&gt;right, key);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">else
+root-&gt;left = dtree(root-&gt;left, key);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">return
+root;</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">}</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">Необходимо
+также следить за правильным обновлением
+указателя на корень дерева, описанного
+вне данной функции, поскольку удаляемая
+вершина может быть корнем. Лучше всего
+с этой целью указателю на корень
+присваивать значение, возвращаемое
+функцией&nbsp;</span></span></span></span></font></font></font></span><kbd class="western"><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">dtree()</span></span></span></span></font></font></font></span></kbd><span style="font-variant: normal"><font color="#000000"><font face="Times New Roman"><font size="4" style="font-size: 14pt"><span style="letter-spacing: normal"><span style="font-style: normal"><span style="font-weight: normal"><span style="background: transparent">:</span></span></span></span></font></font></font></span></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">root
+= dtree(root, key);</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Двоичные
+деревья — исключительно мощное, гибкое
+и эффективное средство. Поскольку при
+поиске в сбалансированном дереве
+выполняется в худшем случае log<sub>2</sub>n
+сравнений, оно намного лучше, чем
+связанный список, в котором возможен
+лишь последовательный поиск.</span></font></font></font></p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent"><b>Содержание
+отчета:</b> Название и цель работы, листинг
+задания для самостоятельной работы.</span></font></font></font></p>
+<ol start="0">
+	<p align="center" style="margin-top: 0.17in; margin-bottom: 0.08in; text-transform: uppercase; line-height: 100%; page-break-before: always; page-break-after: avoid">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><b><span style="background: transparent">Задание
+	для самостоятельной работы </span></b></font></font></font>
+	</p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Все
+варианты</span></font></font></font></p>
+<ol>
+	<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Создать
+	структуру «Дерево» (многосвязный
+	список) Для списка должны быть написанный
+	функции перехода между элементами и
+	функцию добавления элемента.
+	Продемонстрировать работу всех функций
+	дерева. В качестве базового типа данных
+	использовать int (Type=int).</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+1 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию удаления элемента.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+2</span></font></font></font></p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию поиска элемента в дереве.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+3 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию поиска максимального элемента
+	дерева.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+4 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию поиска минимального элемента
+	дерева</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+5 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию поиска числа равного числу <span lang="en-US">A</span>
+	в дереве.</span></font></font></font></p>
+</ol>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+6 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию поиска подсчет количества
+	чисел больших за введенное число А.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+7 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию удаляющую все элементы дерева
+	которые больше введенного число А.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+8 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию удаляющую все элементы дерева
+	которые меньше введенного число А.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+9 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию перемещения элементов дерева.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Вариант
+10 </span></font></font></font>
+</p>
+<ol>
+	<li/>
+<p align="justify" style="margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+	<font color="#000000"><font face="Times New Roman, serif"><font size="4" style="font-size: 14pt"><span style="background: transparent">Написать
+	функцию записи дерева в файл.</span></font></font></font></p>
+</ol>
+<p align="justify" style="text-indent: 0.49in; margin-bottom: 0in; line-height: 0.26in; page-break-before: auto; page-break-after: auto">
+<br/>
+
+</p>
+</body>
+</html>
